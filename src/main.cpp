@@ -12,61 +12,22 @@ using namespace std;
 #include <iostream>
 
 
-///------------------------------------------------------------- Constantes
 
-///---------------------------------------------------- Variables de classe
-
-///----------------------------------------------------------- Types privés
-
-///----------------------------------------------------------------- PUBLIC
-///-------------------------------------------------------- Fonctions amies
-
-///----------------------------------------------------- Méthodes publiques
-// type main::Méthode ( liste de paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-///------------------------------------------------- Surcharge d'opérateurs
-main &
-main::operator = (const main & unmain)
-// Algorithme :
-//
+int main(int argc, char* argv[])
 {
-} //----- Fin de operator =
 
-///-------------------------------------------- Constructeurs - destructeur
-main::main (const main & unmain)
-// Algorithme :
-//
-{
-#ifdef MAP
-	cout << "Appel au constructeur de copie de <main>" << endl;
-#endif
-} //----- Fin de main (constructeur de copie)
+	// ---------------------------------------------------test des argc/argv
+	cout << "argc : "<< argc << endl;
+	for (int i(0) ; i < argc ; i++)
+	{
+		cout << "argv[" << i << "] : "<< argv[i] << endl;
+	}
 
-main::main ()
-// Algorithme :
-//
-{
-#ifdef MAP
-	cout << "Appel au constructeur de <main>" << endl;
-#endif
-
-} //----- Fin de main
-
-main::~main ()
-// Algorithme :
-//
-{
-#ifdef MAP
-	cout << "Appel au destructeur de <main>" << endl;
-#endif
-} //----- Fin de ~main
-
-///------------------------------------------------------------------ PRIVE
-
-///----------------------------------------------------- Méthodes protégées
-
-///------------------------------------------------------- Méthodes privées
+	return 0;
+	/*
+	new gestionArgs(arguments)
+	new data(gestionArgs.nameFic)
+	new analyse(gestionArgs, data)
+	affiche analyse
+	 */
+}
