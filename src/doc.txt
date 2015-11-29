@@ -17,15 +17,14 @@ __________________________________________ DOCUMENTATION PAR MODULE __________
 
 	-------- GraphVizConverter --------
 Définition générale :
-Le convertisseur permet de récuperer une analyse et de l’afficher sous la forme d’un graphe grace à l’outil graphViz
-
+il s’agit d’une méthode de la classe Analyse qui permet de convertir une analyse en graphique
 
 Entrée du convertisseur :
 Une liste d’élements (A, B, C) tels que A correspondent à la page depuis laquel un utilisateur à cliqué sur la page
 B, et ce C fois.
 
 Sortie :
-Un fichier compilable graphViz écrit dans le dossier courant et une image (format png ?)
+Un fichier compilable graphViz écrit dans le dossier results et une image au format png
 
 
 

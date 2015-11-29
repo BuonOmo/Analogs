@@ -1,0 +1,23 @@
+digraph AnalysisResult {
+node [color=lightblue, style="", shape=note];
+H -> G [label=2, color=lightblue];
+D -> B [label=4, color=lightblue];
+C -> E [label=2, color=lightblue];
+F -> C [label=4, color=lightblue];
+C -> D [label=4, color=lightblue];
+G -> E [label=3, color=lightblue];
+E -> A [label=4, color=lightblue];
+A -> H [label=2, color=lightblue];
+G -> C [label=3, color=lightblue];
+D -> D [label=4, color=lightblue];
+B -> C [label=3, color=lightblue];
+C -> F [label=4, color=lightblue];
+B -> A [label=4, color=lightblue];
+C -> F [label=2, color=lightblue];
+F -> H [label=1, color=lightblue];
+B -> G [label=1, color=lightblue];
+D -> C [label=2, color=lightblue];
+G -> D [label=1, color=lightblue];
+E -> B [label=3, color=lightblue];
+C -> E [label=2, color=lightblue];
+}
