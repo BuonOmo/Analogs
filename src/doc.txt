@@ -1,4 +1,36 @@
-Afin de réaliser les diférente service exigés par le cahier des charges  nous devons charger en mémoire les donées d’un fichier log de maniéré a pouvoir les analyser. 
-L’analyse des service qui nous sont demandé nous a permise de réduire l’étandue des données . seule le graphe pondéré (dont les sommet représente les pages et les arréts le nombre de hit) et cela pour chaque intérvale [heurs ;heur+1].
-Dans un premier temps nous avons imaginé mémoriser le graphe dans une matrice d’adjacence. Etant donné que nous n’avions pas d’indication sur le nombre de sommet et de lien, il ne nous est pas possible de prévoir précisément le poids mémoire d’une telle  matrice potentilement tres grand (sommet² beaucoup de 0 ). Nous avons donc opté pour une solution solution moine lourde qui ne crée pas d’eplassement mémoire pour les lien entre deux pages qui ne sont pas…
-Nous avons donc crée un arbre rouge noire qui contient 
+Afin de rÃ©aliser les diffÃ©rent service exigÃ©s par le cahier des charges  nous devons charger en mÃ©moire les donÃ©es dâ€™un fichier log de maniÃ©rÃ© a pouvoir les analyser. 
+Lâ€™analyse des service qui nous sont demandÃ© nous a permise de rÃ©duire lâ€™Ã©tandue des donnÃ©es . seule le graphe pondÃ©rÃ© (dont les sommet reprÃ©sente les pages et les arrÃ©ts le nombre de hit) et cela pour chaque intÃ©rvale [heurs ;heur+1].
+Dans un premier temps nous avons imaginÃ© mÃ©moriser le graphe dans une matrice dâ€™adjacence. Etant donnÃ© que nous nâ€™avions pas dâ€™indication sur le nombre de sommet et de lien, il ne nous est pas possible de prÃ©voir prÃ©cisÃ©ment le poids mÃ©moire dâ€™une telle  matrice potentilement tres grand (sommetÂ² beaucoup de 0 ). Nous avons donc optÃ© pour une solution solution moine lourde qui ne crÃ©e pas dâ€™eplassement mÃ©moire pour les lien entre deux pages qui ne sont pas
+Nous avons donc crÃ©e un arbre rouge noire qui contient 
+
+
+
+
+
+
+
+
+
+
+__________________________________________ DOCUMENTATIONÂ PARÂ MODULE ______________________________________________ 
+
+
+	-------- GraphVizConverter --------
+DÃ©finition gÃ©nÃ©rale :
+Le convertisseur permet de rÃ©cuperer une analyse et de lâ€™afficher sous la forme dâ€™un graphe grace Ã  lâ€™outil graphViz
+
+
+EntrÃ©e du convertisseur :
+Une liste dâ€™Ã©lements (A, B, C) tels que A correspondent Ã  la page depuis laquel un utilisateur Ã  cliquÃ© sur la page
+B, et ce C fois.
+
+Sortie :
+Un fichier compilable graphViz Ã©crit dans le dossier courant et une image (format png ?)
+
+
+
+
+
+	-------- Analysis --------
+
+	-------- Data --------
