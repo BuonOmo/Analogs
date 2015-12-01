@@ -32,7 +32,27 @@ using namespace std;
 
 bool Read::hasNextLog ( )
 {
+#ifdef MAP
+    cout << "Appel à la methode Read::hasNextLog" << endl;
+#endif
 
+	if ( !file.eof() )
+	{
+		char c;
+		file.get(c);
+		if ( (int)c == 1 && file.eof() )
+		{
+			file.unget();
+#ifdef MAP
+	cout << "Read::hasNextLog = true" << endl;
+#endif
+			return true;
+		}
+	}
+#ifdef MAP
+	cout << "Read::hasNextLog = false" << endl;
+#endif
+	return false;
 } //----- Fin de hasNextLog
 
 bool Read::readNextLog ( )
