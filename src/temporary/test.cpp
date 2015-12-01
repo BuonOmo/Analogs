@@ -16,7 +16,7 @@ void graphVizConvert(int * list [3], int length, string shape = "note", string s
 
 		for (int i(0) ; i < length ; i++)
 		{
-			file << (char)list[i][0] << " -> " << (char)list[i][1];
+			file << '"' <<(char)list[i][0] << '"' << " -> " << '"' << (char)list[i][1]<< '"';
 			file << " [label="<<list[i][2]<<", color="<<color<<"];" << endl;
 		}
 		file << "}" << endl;

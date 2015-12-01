@@ -1,5 +1,8 @@
-#documents de Ulysse
+Tests.tgz n anonyme.log
+anonyme.log
 .cproject
 Debug/
+.git
 .project
-.settings
+.settings/
+Tests.tgz

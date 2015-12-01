@@ -1,0 +1,38 @@
+digraph UML
+{
+	Read [
+		label = 
+			"{ 
+				Read 
+			| 
+				+ file : ifstream\l
+			| 
+				+ hasNextLog()  : bool\l
+				+ readNextLog() : Log\l
+			}",
+		shape=record
+	]
+	Log [
+		label = 
+			"{ 
+				Log 
+			|
+				+ date   : Date\l
+				+ root   : string\l
+				+ target : string\l
+	
+			|
+				+ getDate()   : date\l
+				+ getRoot()   : string\l
+				+ getTarget() : string\l
+			}",
+		shape=record
+	]
+
+	Log -> Read
+	[
+		arrowhead=diamond,
+		taillabel=1,
+		headlabel="1 "
+	]
+}
