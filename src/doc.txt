@@ -17,7 +17,7 @@ __________________________________________ DOCUMENTATION PAR MODULE __________
 
 	-------- GraphVizConverter --------
 Définition générale :
-il s’agit d’une méthode de la classe Analyse qui permet de convertir une analyse en graphique
+il s’agit d’une méthode de la classe Analysis qui permet de convertir une analyse en graphique
 
 Entrée du convertisseur :
 Une liste d’élements (A, B, C) tels que A correspondent à la page depuis laquel un utilisateur à cliqué sur la page
