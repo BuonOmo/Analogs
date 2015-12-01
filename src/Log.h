@@ -56,7 +56,7 @@ public:
     // Contrat :
     //
 
-    Log ( );
+    Log ( Date aDate, string aRoot, string aTarget );
     // Mode d'emploi :
     //
     // Contrat :
