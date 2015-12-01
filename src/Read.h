@@ -32,6 +32,10 @@ public:
     //
     // Contrat :
     //
+    
+    bool hasNextLog ( );
+
+    Log readNextLog ( );
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -49,11 +53,14 @@ public:
     // Contrat :
     //
 
-    Read ( );
+    Read ( string aFile );
     // Mode d'emploi :
-    //
+    // Appel le constructeur  avec  un  nom de fichier (à la racine) ou un
+    // chemin.  Un mauvais adressage peut être detecté si un autre fichier
+    // n’est pas ciblé.
+    // 
     // Contrat :
-    //
+    // Le fichier ciblé par aFile doit être un fichier log.
 
     virtual ~Read ( );
     // Mode d'emploi :
