@@ -19,7 +19,7 @@ using namespace std;
 ///------------------------------------------------------------- Constantes
 
 ///---------------------------------------------------- Variables de classe
-struct Date
+typedef struct Date
 {
 	int hour;
 	int minute;
@@ -27,9 +27,8 @@ struct Date
 	int timeZone;
 	int day;
 	int month;
-	int year
-};
-typedef Date struct date;
+	int year;
+} Date;
 
 ///----------------------------------------------------------- Types privés
 
@@ -38,17 +37,17 @@ typedef Date struct date;
 
 ///----------------------------------------------------- Méthodes publiques
 
-Date getDate()
+Date Log::getDate()
 {
 	return date;
 }
 
-string getRoot()
+string Log::getRoot()
 {
 	return root;
 }
 
-string getTarget()
+string Log::getTarget()
 {
 	return target;
 }
