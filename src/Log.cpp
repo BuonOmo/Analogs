@@ -40,17 +40,17 @@ typedef struct Date
 Date Log::getDate()
 {
 	return date;
-}
+} //----- Fin de getDate
 
 string Log::getRoot()
 {
 	return root;
-}
+} //----- Fin de getRoot
 
 string Log::getTarget()
 {
 	return target;
-}
+} //----- Fin de getTarget
 
 
 ///------------------------------------------------- Surcharge d'opérateurs
