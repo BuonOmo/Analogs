@@ -1,7 +1,7 @@
 /*************************************************************************
                       Read  -  classe de lecture de log
                              -------------------
-    début                : 1 dec. 2015
+    dÃ©but                : 1 dec. 2015
     copyright            : (C) 2015 par Ulysse et Adrien
 *************************************************************************/
 
@@ -9,14 +9,14 @@
 #if ndef ( READ_H )
 #define READ_H
 
-//--------------------------------------------------- Interfaces utilisées
+//--------------------------------------------------- Interfaces utilisÃ©es
 #include "Log.h"
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
-// Rôle de la classe <Read>
+// RÃ´le de la classe <Read>
 //
 //
 //------------------------------------------------------------------------ 
@@ -26,19 +26,24 @@ class Read
 //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste de paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+//----------------------------------------------------- MÃ©thodes publiques
     
     bool hasNextLog ( );
+    // Mode d'emploi :
+    // Verifie sâ€™il reste encore un log dans le fichier.
+    // 
+    // Contrat :
+    // -
 
     Log readNextLog ( );
+    // Mode d'emploi :
+    // Lis la ligne suivant et renvoi un objet Log correspondant.
+    // 
+    // Contrat :
+    // -
 
 
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opÃ©rateurs
     Read & operator = ( const Read & aRead );
     // Mode d'emploi :
     //
@@ -55,12 +60,12 @@ public:
 
     Read ( string aFile );
     // Mode d'emploi :
-    // Appel le constructeur  avec  un  nom de fichier (à la racine) ou un
-    // chemin.  Un mauvais adressage peut être detecté si un autre fichier
-    // n’est pas ciblé.
+    // Appel le constructeur  avec  un  nom de fichier (Ã  la racine) ou un
+    // chemin.  Un mauvais adressage peut Ãªtre detectÃ© si un autre fichier
+    // nâ€™est pas ciblÃ©.
     // 
     // Contrat :
-    // Le fichier ciblé par aFile doit être un fichier log.
+    // Le fichier ciblÃ© par aFile doit Ãªtre un fichier log.
 
     virtual ~Read ( );
     // Mode d'emploi :
@@ -71,26 +76,26 @@ public:
 //------------------------------------------------------------------ PRIVE 
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- MÃ©thodes protÃ©gÃ©es
 
 private:
-//------------------------------------------------------- Méthodes privées
+//------------------------------------------------------- MÃ©thodes privÃ©es
 
 protected:
-//----------------------------------------------------- Attributs protégés
+//----------------------------------------------------- Attributs protÃ©gÃ©s
 
 private:
-//------------------------------------------------------- Attributs privés
+//------------------------------------------------------- Attributs privÃ©s
     ifstream file;
 
 //---------------------------------------------------------- Classes amies
 
-//-------------------------------------------------------- Classes privées
+//-------------------------------------------------------- Classes privÃ©es
 
-//----------------------------------------------------------- Types privés
+//----------------------------------------------------------- Types privÃ©s
 
 };
 
-//----------------------------------------- Types dépendants de <Read>
+//----------------------------------------- Types dÃ©pendants de <Read>
 
 #endif // READ_H

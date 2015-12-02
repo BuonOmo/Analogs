@@ -1,15 +1,15 @@
 /*************************************************************************
                       Read  -  classe de lecture de log
                              -------------------
-    début                : 1 dec. 2015
+    dÃ©but                : 1 dec. 2015
     copyright            : (C) 2015 par Ulysse et Adrien
 *************************************************************************/
 
-///---------- Réalisation de la classe <Read> (fichier Read.cpp) --
+///---------- RÃ©alisation de la classe <Read> (fichier Read.cpp) --
 
 ///---------------------------------------------------------------- INCLUDE
 
-///-------------------------------------------------------- Include système
+///-------------------------------------------------------- Include systÃ¨me
 using namespace std;
 #include <iostream>
 #include <string>
@@ -22,18 +22,18 @@ using namespace std;
 
 ///---------------------------------------------------- Variables de classe
 
-///----------------------------------------------------------- Types privés
+///----------------------------------------------------------- Types privÃ©s
 
 
 ///----------------------------------------------------------------- PUBLIC
 ///-------------------------------------------------------- Fonctions amies
 
-///----------------------------------------------------- Méthodes publiques
+///----------------------------------------------------- MÃ©thodes publiques
 
 bool Read::hasNextLog ( )
 {
 #ifdef MAP
-    cout << "Appel à la methode Read::hasNextLog" << endl;
+    cout << "Appel Ã  la methode Read::hasNextLog" << endl;
 #endif
 
 	if ( !file.eof() )
@@ -55,12 +55,31 @@ bool Read::hasNextLog ( )
 	return false;
 } //----- Fin de hasNextLog
 
-bool Read::readNextLog ( )
+Log Read::readNextLog ( )
 {
-
+#ifdef MAP
+    cout << "Appel Ã  la methode Read::readNextLog" << endl;
+#endif
+    string line;
+    getline(file, line);
+    //----- recherche de la racine
+    string rootFinder ( "\"GET " );
+    int rootBegin  ( find ( rootFinder ) + rootFinder.size ( ) );
+    int rootEnd    ( find ( '"', rootBegin ) );
+    int rootLength ( rootEnd - rootBegin );
+    string root ( line.substr ( rootBegin, rootLength ) );
+    //----- recherche de la cible
+    int targetBegin  ( find ( '"', rootEnd + 1 );
+    int targetEnd    ( find ( '"', targetBegin + 1 ) );
+    int targetLength ( targetEnd - targetBegin );
+    string target ( line.substr ( targetBegin, targetEnd ) );
+    //----- recherche de la date ________________________________________________________TODO
+    Date date;
+    root = line.substr())
+    return new Log(date, root, target);
 } //----- Fin de readNextLog
 
-///------------------------------------------------- Surcharge d'opérateurs
+///------------------------------------------------- Surcharge d'opÃ©rateurs
 Read & Read::operator = ( const Read & unRead )
 // Algorithme :
 //
@@ -95,7 +114,7 @@ Read::Read ( string aFile )
 
     if (aFile.rfind(".log\0") != string::npos)
     {
-    	cerr << "Le fichier selectionné n’est pas un fichier .log"<< endl;
+    	cerr << "Le fichier selectionnÃ© nâ€™est pas un fichier .log"<< endl;
     	return 1;
     }
 
@@ -122,6 +141,6 @@ Read::~Read ( )
 
 ///------------------------------------------------------------------ PRIVE
 
-///----------------------------------------------------- Méthodes protégées
+///----------------------------------------------------- MÃ©thodes protÃ©gÃ©es
 
-///------------------------------------------------------- Méthodes privées
+///------------------------------------------------------- MÃ©thodes privÃ©es
