@@ -52,6 +52,23 @@ digraph UML
 		shape=record
 	]
 
+	GraphVizConverter
+	[
+		label =
+			"{
+				GraphVizConverter 
+			|
+				+ optColor : bool \l
+				+ color    : string\l
+				+ shape    : string\l
+				+ doPNG    : bool\l
+			|
+				+ convert()     : void\l
+				+ modifyParam() : void\l
+			}",
+		shape=record
+	]
+
 	Log -> Read
 	[
 		arrowhead=diamond,
