@@ -4,8 +4,8 @@ RM       = rm
 RMFLAGS  = -f
 OUTPUT   = -o
 CPPFLAGS = -Wall -Dmap #-DMAP
-INTPATH  = # src/
-INT      = $(INTPATH)Log.h $(INTPATH)Read.h $(INTPATH)GraphVizConverter.h
+INTPATH  = ../src/
+INT      = Log.h Read.h GraphVizConverter.h
 REAL     = $(INT:.h=.cpp)
 OBJ      = $(INT:.h=.o) main.o
 LIBPATH  = #-L
@@ -21,12 +21,13 @@ CLEAN = Clean
 $(EXE) : $(OBJ)
 	$(EDL) $(OUTPUT) $(EXE) $(OBJ)
 
-%.o : %.cpp
+%.o : $(INTPATH)%.cpp
 	$(ECHO) "compilation de <$<>"
 	$(COMP) $(CPPFLAGS) $(INCPATH) -c $<
 
-Read.o : Read.h Log.h
 Log.o  : Log.h
+Read.o : Read.h Log.h
+
 
 
 
