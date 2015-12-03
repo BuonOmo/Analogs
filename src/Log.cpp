@@ -24,9 +24,9 @@ typedef struct Date
 	int hour;
 	int minute;
 	int second;
-	int timeZone;
+	int timeZone; //_______________ ne prends pas en compte les demi heures
 	int day;
-	int month;
+	string month;
 	int year;
 } Date;
 
@@ -60,6 +60,20 @@ Log & Log::operator = ( const Log & unLog )
 	root = unLog.root;
 	target = unLog.target;
 } //----- Fin de operator =
+
+ostream & Log::operator << ( ostream & os, const Log & unLog)
+{
+    os << "( " << root << " ; " << target << " ; ";
+    os << date.day << " ; ";
+    os << date.month << " ; ";
+    os << date.year << " ; ";
+    os << date.hour << " ; ";
+    os << date.minute << " ; ";
+    os << date.second << " ; ";
+    os <<  (( date.timeZone >= 0 ) ? '+' : '-' );
+    os << date.timeZone << " )" << endl;
+	return os;
+}
 
 
 ///-------------------------------------------- Constructeurs - destructeur
