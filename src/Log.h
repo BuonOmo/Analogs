@@ -48,6 +48,7 @@ public:
     // Contrat :
     //
 
+    ostream & Log::operator << ( ostream & os, const Log & unLog);
 
 //-------------------------------------------- Constructeurs - destructeur
     Log ( const Log & unLog );
