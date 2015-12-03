@@ -56,7 +56,7 @@ digraph UML
 	[
 		label =
 			"{
-				GraphVizConverter 
+				GraphVizConverter (TODO)
 			|
 				+ optColor : bool \l
 				+ color    : string\l

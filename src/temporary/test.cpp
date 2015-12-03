@@ -28,7 +28,6 @@ void graphVizConvert(int * list [3], int length, string shape = "note", string s
 	}
 	system("dot -Tpng -o results/graph.png results/graph.dot ; eog results/graph.png");
 }
-
 int main ()
 {
 	int ** tab;
