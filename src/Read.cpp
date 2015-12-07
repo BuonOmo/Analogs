@@ -82,7 +82,7 @@ Log Read::readNextLog ( )
     line.replace ( line.find ( ':' ) , 1, 1, ' ' );
     line.replace ( line.find ( ':' ) , 1, 1, ' ' );
     line.replace ( line.find ( ':' ) , 1, 1, ' ' );
-    istringstream streamDate ( line ); 
+    istringstream streamDate ( line );
     streamDate >> date.day;
     streamDate >> date.month;
     streamDate >> date.year;
@@ -100,7 +100,7 @@ Log Read::readNextLog ( )
     }
     date.timeZone /= 100;
 
-    return new Log(date, root, target);
+    return *(new Log(date, root, target));
 } //----- Fin de readNextLog
 
 ///------------------------------------------------- Surcharge d'opérateurs
@@ -108,7 +108,8 @@ Read & Read::operator = ( const Read & unRead )
 // Algorithme :
 //
 {
-	this.file = unRead.file;
+	this -> file = unRead.file;
+	return *this;
 } //----- Fin de operator =
 
 
@@ -121,14 +122,14 @@ Read::Read ( const Read & unRead )
     cout << "Appel au constructeur de copie de <Read>" << endl;
 #endif
 
-    if (&this != &unRead)
+    if (this != &unRead)
     {
-    	this = unRead;
+    	*this = unRead;
     }
 } //----- Fin de Read (constructeur de copie)
 
 
-Read::Read ( string aFile )
+Read::Read ( const string & aFile )
 // Algorithme :
 //
 {
@@ -139,15 +140,15 @@ Read::Read ( string aFile )
     if (aFile.rfind(".log\0") != string::npos)
     {
     	cerr << "Le fichier selectionné n’est pas un fichier .log"<< endl;
-    	return 1;
+    	return;
     }
 
-    file(aFile, ios::in);
+    ifstream file(aFile.c_str(), ios::in);
 
     if (!file)
     {
 		cerr << "Impossible d'ouvrir le fichier " << aFile << '.' <<endl;
-		return 1;
+		return;
 	}
 
 } //----- Fin de Read

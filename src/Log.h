@@ -6,20 +6,30 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Log> (fichier Log.h) ------
-#if ndef ( LOG_H )
+#ifndef LOG_H
 #define LOG_H
 
 //--------------------------------------------------- Interfaces utilisées
 #include <string>
-//------------------------------------------------------------- Constantes 
+//------------------------------------------------------------- Constantes
 
-//------------------------------------------------------------------ Types 
+//------------------------------------------------------------------ Types
+typedef struct Date
+{
+	int hour;
+	int minute;
+	int second;
+	int timeZone; //_______________ ne prends pas en compte les demi heures
+	int day;
+	string month;
+	int year;
+} Date;
 
-//------------------------------------------------------------------------ 
+//------------------------------------------------------------------------
 // Rôle de la classe <Log>
 //
 //
-//------------------------------------------------------------------------ 
+//------------------------------------------------------------------------
 
 class Log
 {
@@ -27,7 +37,7 @@ class Log
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    
+
     // ----------------------------------------------------------- GETTERS
     // Mode d'emploi :
     //
@@ -48,7 +58,7 @@ public:
     // Contrat :
     //
 
-    ostream & Log::operator << ( ostream & os, const Log & unLog);
+    friend ostream & operator << ( ostream & os, const Log & unLog);
 
 //-------------------------------------------- Constructeurs - destructeur
     Log ( const Log & unLog );
@@ -57,7 +67,7 @@ public:
     // Contrat :
     //
 
-    Log ( Date aDate, string aRoot, string aTarget );
+    Log ( const Date &aDate, const string &aRoot, const string &aTarget );
     // Mode d'emploi :
     //
     // Contrat :
@@ -69,7 +79,7 @@ public:
     // Contrat :
     //
 
-//------------------------------------------------------------------ PRIVE 
+//------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Méthodes protégées

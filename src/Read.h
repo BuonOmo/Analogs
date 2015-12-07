@@ -6,7 +6,7 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Read> (fichier Read.h) ------
-#if ndef ( READ_H )
+#ifndef READ_H
 #define READ_H
 
 //--------------------------------------------------- Interfaces utilisées
@@ -58,7 +58,7 @@ public:
     // Contrat :
     //
 
-    Read ( string aFile );
+    Read ( const string & aFile );
     // Mode d'emploi :
     // Appel le constructeur  avec  un  nom de fichier (à la racine) ou un
     // chemin.  Un mauvais adressage peut être detecté si un autre fichier

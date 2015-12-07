@@ -19,16 +19,6 @@ using namespace std;
 ///------------------------------------------------------------- Constantes
 
 ///---------------------------------------------------- Variables de classe
-typedef struct Date
-{
-	int hour;
-	int minute;
-	int second;
-	int timeZone; //_______________ ne prends pas en compte les demi heures
-	int day;
-	string month;
-	int year;
-} Date;
 
 ///----------------------------------------------------------- Types privés
 
@@ -61,35 +51,37 @@ Log & Log::operator = ( const Log & unLog )
 	target = unLog.target;
 } //----- Fin de operator =
 
-ostream & Log::operator << ( ostream & os, const Log & unLog)
+ostream & operator << ( ostream & os, const Log & unLog)
 {
-    os << "( " << root << " ; " << target << " ; ";
-    os << date.day << " ; ";
-    os << date.month << " ; ";
-    os << date.year << " ; ";
-    os << date.hour << " ; ";
-    os << date.minute << " ; ";
-    os << date.second << " ; ";
-    os <<  (( date.timeZone >= 0 ) ? '+' : '-' );
-    os << date.timeZone << " )" << endl;
+    os << "( " << unLog.root << " ; " << unLog.target << " ; ";
+    os << unLog.date.day << " ; ";
+    os << unLog.date.month << " ; ";
+    os << unLog.date.year << " ; ";
+    os << unLog.date.hour << " ; ";
+    os << unLog.date.minute << " ; ";
+    os << unLog.date.second << " ; ";
+    os <<  (( unLog.date.timeZone >= 0 ) ? '+' : '-' );
+    os << unLog.date.timeZone << " )" << endl;
 	return os;
 }
 
 
 ///-------------------------------------------- Constructeurs - destructeur
-Log::Log ( const Log & unLog ) :
+Log::Log ( const Log & unLog )
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Log>" << endl;
 #endif
-    if (&this != &unLog)
+    if (this != &unLog)
     {
-    	this = unLog;
+    	*this = unLog;
     }
 } //----- Fin de Log (constructeur de copie)
 
 
-Log::Log ( Date aDate, string aRoot, string aTarget ) :
+Log::Log ( const Date & aDate,
+		   const string & aRoot,
+		   const string & aTarget ) :
 	date (aDate), root (aRoot), target (aTarget)
 {
 #ifdef MAP
