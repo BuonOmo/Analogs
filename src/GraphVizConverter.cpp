@@ -28,6 +28,27 @@ void GraphVizConverter::showParameters () const
 	cout << *this << endl;
 } //----- Fin de showParameters
 
+void GraphVizConverter::modifyParameters
+	( int param, const string & value )
+{
+	switch (param) {
+		case 0 : printPNG = (value == "true") ? true : false;
+			break;
+		case 1 : title      = value;
+			break;
+		case 2 : shapeArrow = value;
+			break;
+		case 3 : colorLink  = value;
+			break;
+		case 4 : colorNode  = value;
+			break;
+		case 5 : shapeNode  = value;
+			break;
+		case 6 : shapeTail  = value;
+			break;
+	}
+} //----- Fin de modifyParameters
+
 void GraphVizConverter::convert (list<string[3]> & graph,
 								 const string & nameBase,
 								 const string & path) const

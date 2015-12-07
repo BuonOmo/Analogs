@@ -33,6 +33,21 @@ public:
     // Contrat :
     // voir operator <<
 
+    void modifyParameter ( int param, const string & value );
+    // Mode d’Emploi :
+    //      valeur de param :
+    //      0 -> modification de printPNG (value = "true" | "false" )
+    //      1 -> modification de title (*)
+    //      2 -> modification de shapeArrow (*)
+    //      3 -> modification de colorLink (*)
+    //      4 -> modification de colorNode (*)
+    //      5 -> modification de shapeNode (*)
+    //      6 -> modification de shapeTail (*)
+    // *La valeure du parametre en question devient value
+    // Contrat :
+    // Les cohérances avec le langage graphViz sont à verifier par
+    // l’utilisateur.
+
 	void convert (list<string[3]> & graph,
 				  const string & nameBase = "graph",
 				  const string & path     = "") const;
@@ -50,6 +65,9 @@ public:
 
     friend ostream & operator <<
         ( ostream & os, const GraphVizConverter & aGraphVizConverter );
+    // Contrat :
+    // Affiche les parametres du convertisseur. Attention, l’affichage
+    // prend beaucoup de place (plusieurs lignes).
 
 //-------------------------------------------- Constructeurs - destructeur
 	GraphVizConverter ( const GraphVizConverter & aGraphVizConverter );
