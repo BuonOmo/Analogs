@@ -14,6 +14,7 @@ using namespace std;
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <sstream>
 
 ///------------------------------------------------------ Include personnel
 #include "Read.h"

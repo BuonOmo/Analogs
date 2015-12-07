@@ -5,60 +5,139 @@
     copyright            : (C) 2015 par ulysse
 *************************************************************************/
 
-///---------- Réalisation de la classe <GraphVizConverter> (fichier GraphVizConverter.cpp) --
+//--------------------------- Réalisation de la classe <GraphVizConverter>
+//---------------------------------------- (fichier GraphVizConverter.cpp)
 
-///---------------------------------------------------------------- INCLUDE
+//---------------------------------------------------------------- INCLUDE
 
-///-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include système
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <cstdlib>
-
-///------------------------------------------------------ Include personnel
-#include "GraphVizConverter.h"
-
-///---------------------------------------------------- Variables de classe
 using namespace std;
 
+//------------------------------------------------------ Include personnel
+#include "GraphVizConverter.h"
 
-///----------------------------------------------------------------- PUBLIC
+//----------------------------------------------------------------- PUBLIC
 
-///----------------------------------------------------- Méthodes publiques
+//----------------------------------------------------- Méthodes publiques
 
 
-void graphVizConvert(int * list [3],
-					 int length,
-					 string shape,
-					 string style,
-					 string color)
+void GraphVizConverter::convert (list<string[3]> & graph,
+								 const string & nameBase,
+								 const string & path)
 {
 	// création ou écrasement du fichier dot
-	ofstream file ("results/graph.dot", ios::out | ios::trunc);
-	
+	string toOpen = path + nameBase;
+	ofstream file (toOpen.c_str(), ios::out | ios::trunc);
+
 	if(file){
 
 		file << "digraph AnalysisResult {" << endl;
-		file << "node [color="<<color;
-		file << ",style=" << style;
-		file << ", shape=" << shape;
-		file << "];" << endl;
-
-		for (int i(0) ; i < length ; i++)
+		// Ajout du titre
+		file << "label = \"" << title;
+		file << "\";"        << endl;
+		// Format des nœuds
+		file << "node [color=" << colorNode;
+		file << ", style="     << "";
+		file << ", shape="     << shapeNode;
+		file << "];"           << endl;
+		// Format des liasions
+		file << "edge [color=" << colorLink;
+		file << ", arrowhead=" << shapeArrow;
+		file << ", arrowtail=" << shapeTail;
+		file << "];"           << endl;
+		// Création des liens
+		for (list<string[3]>::const_iterator it = graph.begin(); it != graph.end(); ++it)
 		{
-			file << '"' <<(char)list[i][0] << '"';
-			file<< " -> ";
-			file << '"' << (char)list[i][1]<< '"';
-			file << " [label="<<list[i][2]<<", color="<<color<<"];";
+			file << '"' << (*it)[0] << '"';
+			file << " -> ";
+			file << '"' << (*it)[1] << '"';
+			file << " [label=" << '"';
+			file << (*it)[2] << "\"];";
 			file << endl;
 		}
 		file << "}" << endl;
 		file.close();
+		if (printPNG)
+		{
+			system("dot -Tpng -o results/graph.png results/graph.dot");
+			system("eog results/graph.png");
+		}
 	}
 	else
 	{
-		cerr << "Impossible de creer le fichier !" << endl;
+		cerr << "Impossible de creer le fichier,";
+		cerr << " verifiez l’existance du chemin" << endl;
 	}
-	system("dot -Tpng -o results/graph.png results/graph.dot");
-	system("eog results/graph.png");
 }
+
+///------------------------------------------------- Surcharge d'op�rateurs
+GraphVizConverter & GraphVizConverter::operator =
+	( const GraphVizConverter & aGraphVizConverter )
+{
+	printPNG   = aGraphVizConverter.printPNG;
+	title      = aGraphVizConverter.title;
+	shapeArrow = aGraphVizConverter.shapeArrow;
+	colorLink  = aGraphVizConverter.colorLink;
+	colorNode  = aGraphVizConverter.colorNode;
+	shapeNode  = aGraphVizConverter.shapeNode;
+	shapeTail  = aGraphVizConverter.shapeTail;
+	return *this;
+} //----- Fin de operator =
+
+
+///-------------------------------------------- Constructeurs - destructeur
+GraphVizConverter::GraphVizConverter
+	( const GraphVizConverter & aGraphVizConverter )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur de copie de <GraphVizConverter>" << endl;
+#endif
+	if (this != &aGraphVizConverter)
+	{
+		*this = aGraphVizConverter;
+	}
+} //----- Fin de GraphVizConverter (constructeur de copie)
+
+
+GraphVizConverter::GraphVizConverter ( bool           aPrintPNG,
+									   const string & aTitle,
+									   const string & aShapeArrow,
+									   const string & aColorLink,
+									   const string & aColorNode,
+									   const string & aShapeNode,
+									   const string & aShapeTail) :
+									   printPNG (aPrintPNG),
+									   title (aTitle),
+									   shapeArrow (aShapeArrow),
+									   colorLink (aColorLink),
+									   colorNode (aColorNode),
+									   shapeNode (aShapeNode),
+									   shapeTail (aShapeTail)
+{
+#ifdef MAP
+    cout << "Appel au constructeur de <GraphVizConverter>" << endl;
+#endif
+} //----- Fin de GraphVizConverter
+
+
+GraphVizConverter::~GraphVizConverter ( )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au destructeur de <GraphVizConverter>" << endl;
+#endif
+} //----- Fin de ~GraphVizConverter
+
+
+///------------------------------------------------------------------ PRIVE
+
+///----------------------------------------------------- M�thodes prot�g�es
+
+///------------------------------------------------------- M�thodes priv�es
