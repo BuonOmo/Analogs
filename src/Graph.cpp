@@ -122,7 +122,7 @@ list<string [3]> Graph::allLinks()
 
 
 ///------------------------------------------------- Surcharge d'opérateurs
-Graph & Graph::operator = ( const Graph & unGraph )
+Graph & Graph::operator = (  Graph & unGraph )
 // Algorithme :
 //
 {
@@ -142,8 +142,7 @@ Graph & Graph::operator = ( const Graph & unGraph )
 	graph.erase(graph.begin(),graph.end());
 
 
-    //for (const map<string,map<string,int>*>::iterator itGraphe = unGraph.graph.begin(); itGraphe !=unGraph.graph.end(); itGraphe++)
-	for (auto const itGraphe: unGraph.graph )
+    for ( map<string,map<string,int>*>::iterator itGraphe = unGraph.graph.begin(); itGraphe !=unGraph.graph.end(); itGraphe++)
     {
     	graph[itGraphe->first] = new map<string,int>(  * itGraphe->second );
     }
@@ -161,7 +160,7 @@ Graph::Graph (const Read & aData, bool aOptVisual,  bool aOptExclude,  bool aOpt
 	optHour = aOptHour;
 	hourInOpt = aHourInOpt;
 }
-Graph::Graph (const Graph & unGraph)
+Graph::Graph ( Graph & unGraph)
 // Algorithme :
 //
 {
@@ -174,7 +173,7 @@ Graph::Graph (const Graph & unGraph)
 	optExclude = unGraph.optExclude;
 	optHour = unGraph.optHour;
 	hourInOpt = unGraph.hourInOpt;
-    for ( const map<string,map<string,int>*>::iterator itGraphe = unGraph.graph.begin(); itGraphe !=unGraph.graph.end(); itGraphe++)
+    for ( map<string,map<string,int>*>::iterator itGraphe = unGraph.graph.begin(); itGraphe !=unGraph.graph.end(); itGraphe++)
     {
     	graph[itGraphe->first] = new map<string,int>(  * itGraphe->second );
     }

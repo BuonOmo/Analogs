@@ -47,7 +47,7 @@ void insertDataSources (const Read & aData );
 list<string [3]> allLinks();
 
 //------------------------------------------------- Surcharge d'opérateurs
-	Graph & operator = ( const Graph & aGraph );
+	Graph & operator = (  Graph & aGraph );
     // Mode d'emploi :
     //
     // Contrat :
@@ -55,7 +55,7 @@ list<string [3]> allLinks();
 
 
 //-------------------------------------------- Constructeurs - destructeur
-	Graph ( const Graph & aGraph );
+	Graph (  Graph & aGraph );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
