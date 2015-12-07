@@ -29,25 +29,30 @@ class GraphVizConverter
 
 public:
 //----------------------------------------------------- M�thodes publiques
+    void showParameters () const;
+    // Contrat :
+    // voir operator <<
 
 	void convert (list<string[3]> & graph,
 				  const string & nameBase = "graph",
-				  const string & path     = "");
+				  const string & path     = "") const;
     // Mode d'emploi :
     // lancer la conversion d’un graph après avoir vérifié les parametres
     // de conversion
     // Contrat :
-    //
+    // Récupère un graph au format (racine, cible, label)
 
 //------------------------------------------------- Surcharge d'op�rateurs
 	GraphVizConverter & operator =
-		( const GraphVizConverter & unGraphVizConverter );
+		( const GraphVizConverter & aGraphVizConverter );
 	// Contrat :
 	// utilise les constructeurs de copie de chaque attribut un à un.
 
+    friend ostream & operator <<
+        ( ostream & os, const GraphVizConverter & aGraphVizConverter );
 
 //-------------------------------------------- Constructeurs - destructeur
-	GraphVizConverter ( const GraphVizConverter & unGraphVizConverter );
+	GraphVizConverter ( const GraphVizConverter & aGraphVizConverter );
 	// Mode d'emploi (constructeur de copie) :
 	//
 	// Contrat :

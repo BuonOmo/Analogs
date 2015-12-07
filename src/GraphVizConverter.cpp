@@ -23,11 +23,14 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-
+void GraphVizConverter::showParameters () const
+{
+	cout << *this << endl;
+} //----- Fin de showParameters
 
 void GraphVizConverter::convert (list<string[3]> & graph,
 								 const string & nameBase,
-								 const string & path)
+								 const string & path) const
 {
 	// création ou écrasement du fichier dot
 	string toOpen = path + nameBase;
@@ -72,7 +75,7 @@ void GraphVizConverter::convert (list<string[3]> & graph,
 		cerr << "Impossible de creer le fichier,";
 		cerr << " verifiez l’existance du chemin" << endl;
 	}
-}
+} //----- Fin de convert
 
 ///------------------------------------------------- Surcharge d'op�rateurs
 GraphVizConverter & GraphVizConverter::operator =
@@ -88,6 +91,20 @@ GraphVizConverter & GraphVizConverter::operator =
 	return *this;
 } //----- Fin de operator =
 
+ostream & operator <<
+	( ostream & os, const GraphVizConverter & aGraphVizConverter )
+{
+	os << "Creation et affichage de l’image : ";
+	os << printPNG ? "oui" : "non" << endl;
+	os << "Titre : "                      << title      << endl;
+	os << "Forme des fins de fleches : "  << shapeArrow << endl;
+	os << "Forme des bases de fleches : " << shapeTail  << endl;
+	os << "Forme des boites : "           << shapeNode  << endl;
+	os << "Couleur des liens : "          << colorLink  << endl;
+	os << "Couleur des boites : "         << colorNode;
+
+
+} //----- Fin de operator <<
 
 ///-------------------------------------------- Constructeurs - destructeur
 GraphVizConverter::GraphVizConverter
