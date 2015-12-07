@@ -2,12 +2,12 @@ digraph UML
 {
 	Read
 	[
-		label = 
-			"{ 
-				Read 
-			| 
+		label =
+			"{
+				Read
+			|
 				+ file : ifstream\l
-			| 
+			|
 				+ hasNextLog()  : bool\l
 				+ readNextLog() : Log\l
 			}",
@@ -16,14 +16,14 @@ digraph UML
 
 	Log
 	[
-		label = 
-			"{ 
-				Log 
+		label =
+			"{
+				Log
 			|
 				+ date   : Date\l
 				+ root   : string\l
 				+ target : string\l
-	
+
 			|
 				+ getDate()   : Date\l
 				+ getRoot()   : string\l
@@ -36,7 +36,7 @@ digraph UML
 	[
 		label =
 			"{
-				Graph 
+				Graph
 			|
 				+ optVisual  : bool \l
 				+ optExclude : bool\l
@@ -56,7 +56,7 @@ digraph UML
 	[
 		label =
 			"{
-				GraphVizConverter (TODO)
+				GraphVizConverter
 			|
 				+ optColor : bool \l
 				+ color    : string\l
@@ -65,6 +65,8 @@ digraph UML
 			|
 				+ convert()     : void\l
 				+ modifyParam() : void\l
+				+ showParam()   : void\l
+				+ operator \<\< : ostream\l
 			}",
 		shape=record
 	]
