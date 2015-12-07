@@ -149,7 +149,6 @@ Read::Read ( const string & aFile )
     if (!file)
     {
 		cerr << "Impossible d'ouvrir le fichier " << aFile << '.' <<endl;
-		return;
 	}
 
 } //----- Fin de Read

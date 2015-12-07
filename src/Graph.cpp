@@ -40,10 +40,9 @@ void Graph::insertData()
 	else
 	{
 		graph.erase( graph.begin(),graph.end());
-		Log toInsert;
 		while (data->hasNextLog ( ))
 		{
-			toInsert= data->readNextLog ( );
+			Log toInsert (data->readNextLog ( ));
 			string root = toInsert.getRoot();
 			string target = toInsert.getTarget();
 			Date date = toInsert.getDate();

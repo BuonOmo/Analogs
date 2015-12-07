@@ -67,7 +67,10 @@ public:
     // Contrat :
     //
 
-    Log ( const Date &aDate, const string &aRoot, const string &aTarget );
+    Log ( const Date & aDate,
+		  const string & aRoot,
+		  const string & aTarget
+		  );
     // Mode d'emploi :
     //
     // Contrat :

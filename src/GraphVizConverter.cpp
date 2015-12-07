@@ -92,16 +92,16 @@ GraphVizConverter & GraphVizConverter::operator =
 } //----- Fin de operator =
 
 ostream & operator <<
-	( ostream & os, const GraphVizConverter & aGraphVizConverter )
+	( ostream & os, const GraphVizConverter & aGVC )
 {
 	os << "Creation et affichage de l’image : ";
-	os << printPNG ? "oui" : "non" << endl;
-	os << "Titre : "                      << title      << endl;
-	os << "Forme des fins de fleches : "  << shapeArrow << endl;
-	os << "Forme des bases de fleches : " << shapeTail  << endl;
-	os << "Forme des boites : "           << shapeNode  << endl;
-	os << "Couleur des liens : "          << colorLink  << endl;
-	os << "Couleur des boites : "         << colorNode;
+	os << aGVC.printPNG ? "oui" : "non" << endl;
+	os << "Titre : "                      << aGVC.title      << endl;
+	os << "Forme des fins de fleches : "  << aGVC.shapeArrow << endl;
+	os << "Forme des bases de fleches : " << aGVC.shapeTail  << endl;
+	os << "Forme des boites : "           << aGVC.shapeNode  << endl;
+	os << "Couleur des liens : "          << aGVC.colorLink  << endl;
+	os << "Couleur des boites : "         << aGVC.colorNode;
 
 
 } //----- Fin de operator <<
