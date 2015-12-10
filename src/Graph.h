@@ -10,6 +10,7 @@
 #define GRAPH_H
 
 //--------------------------------------------------- Interfaces utilisées
+using namespace std;
 #include "Read.h"
 #include <string>
 #include <map>
