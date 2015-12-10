@@ -5,77 +5,70 @@
     copyright            : (C) 2015 par Adrien et Ulysse
 *************************************************************************/
 
-///---------- Réalisation de la classe <Log> (fichier Log.cpp) --
+//----------- Réalisation de la classe <Log> (fichier Log.cpp) --
 
-///---------------------------------------------------------------- INCLUDE
+//----------------------------------------------------------------- INCLUDE
 
-///-------------------------------------------------------- Include système
+//--------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
 
-///------------------------------------------------------ Include personnel
+//------------------------------------------------------- Include personnel
 #include "Log.h"
 
-///------------------------------------------------------------- Constantes
+//------------------------------------------------------------------ PUBLIC
 
-///---------------------------------------------------- Variables de classe
-
-///----------------------------------------------------------- Types privés
-
-///----------------------------------------------------------------- PUBLIC
-///-------------------------------------------------------- Fonctions amies
-
-///----------------------------------------------------- Méthodes publiques
-
-Date Log::getDate()
+//------------------------------------------------------ Méthodes publiques
+Date Log::getDate() const
 {
 	return date;
 } //----- Fin de getDate
 
-string Log::getRoot()
+string Log::getRoot() const
 {
 	return root;
 } //----- Fin de getRoot
 
-string Log::getTarget()
+string Log::getTarget() const
 {
 	return target;
 } //----- Fin de getTarget
 
 
-///------------------------------------------------- Surcharge d'opérateurs
-Log & Log::operator = ( const Log & unLog )
+//-------------------------------------------------- Surcharge d'opérateurs
+Log & Log::operator = ( const Log & aLog )
 {
-	date = unLog.date;
-	root = unLog.root;
-	target = unLog.target;
+	if (this != &aLog)
+	{
+		date = aLog.date;
+		root = aLog.root;
+		target = aLog.target;
+	}
+	return *this;
 } //----- Fin de operator =
 
-ostream & operator << ( ostream & os, const Log & unLog)
+ostream & operator << ( ostream & os, const Log & aLog)
 {
-    os << "( " << unLog.root << " ; " << unLog.target << " ; ";
-    os << unLog.date.day << " ; ";
-    os << unLog.date.month << " ; ";
-    os << unLog.date.year << " ; ";
-    os << unLog.date.hour << " ; ";
-    os << unLog.date.minute << " ; ";
-    os << unLog.date.second << " ; ";
-    os <<  (( unLog.date.timeZone >= 0 ) ? '+' : '-' );
-    os << unLog.date.timeZone << " )" << endl;
+    os << "( " << aLog.root << " ; " << aLog.target << " ; ";
+    os << aLog.date.day << " ; ";
+    os << aLog.date.month << " ; ";
+    os << aLog.date.year << " ; ";
+    os << aLog.date.hour << " ; ";
+    os << aLog.date.minute << " ; ";
+    os << aLog.date.second << " ; ";
+    os <<  (( aLog.date.timeZone >= 0 ) ? '+' : '-' );
+    os << aLog.date.timeZone << " )" << endl;
 	return os;
-}
+} //----- Fin de operator <<
 
 
-///-------------------------------------------- Constructeurs - destructeur
-Log::Log ( const Log & unLog )
+//--------------------------------------------- Constructeurs - destructeur
+Log::Log ( const Log & aLog )
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Log>" << endl;
 #endif
-    if (this != &unLog)
-    {
-    	*this = unLog;
-    }
+	*this = aLog;
 } //----- Fin de Log (constructeur de copie)
 
 
@@ -91,17 +84,8 @@ Log::Log ( const Date & aDate,
 } //----- Fin de Log
 
 Log::~Log ( )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Log>" << endl;
 #endif
 } //----- Fin de ~Log
-
-
-///------------------------------------------------------------------ PRIVE
-
-///----------------------------------------------------- Méthodes protégées
-
-///------------------------------------------------------- Méthodes privées

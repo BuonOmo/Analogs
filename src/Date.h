@@ -16,9 +16,8 @@
 //------------------------------------------------------------------- Types
 
 //-------------------------------------------------------------------------
-// Rôle de la classe <Date>
-//
-//
+// Date permet de génerer des dates, d’acceder aux differents élements de
+// celles-ci et de les afficher. 
 //-------------------------------------------------------------------------
 
 class Date
@@ -28,74 +27,56 @@ class Date
 public:
 //------------------------------------------------------ Méthodes publiques
     int getHour () const;
-    // Mode d'emploi :
-    //
     // Contrat :
-    //
+    // Renvoi l’attribut hour.
 
 //-------------------------------------------------- Surcharge d'opérateurs
     Date & operator = ( const Date & aDate );
-    // Mode d'emploi :
-    //
     // Contrat :
-    //
+    // Copier tous les attributs un à un.
 
     friend ostream & operator << ( ostream & os, const Date & aDate);
+    // Contrat :
+    // Format -> [DD/Mon/YYYY:HH:MM:SS ±TTTT], T réfère à timeZone
 
 //--------------------------------------------- Constructeurs - destructeur
     Date ( const Date & aDate );
-    // Mode d'emploi (constructeur de copie) :
-    //
     // Contrat :
-    //
+    // Voir operator =.
 
     Date ( 	int aHour     = 0,
             int aMinute   = 0,
             int aSecond   = 0,
-            int aTimeZone = 0, //__ ne prends pas en compte les demi heures
+            int aTimeZone = 0,
             int aDay      = 1,
             int aYear     = 2000,
             const string & aMonth = "Jan"
          );
     // Mode d'emploi :
+    // Entrer les valeurs correspondant au nom des attributs. Pour le mois
+    // il s’agit des trois premières lettres en anglais.
     //
     // Contrat :
-    //
+    // Les paramètres doivent être entré dans des formats valide
+    // (60 minutes / 24 heures / Jan, Feb, Mar..).
+    // Les GTM comprenant des demi-heures ne sont pas pris en compte et
+    // sont automatiquement tronqués.
 
     virtual ~Date ( );
-    // Mode d'emploi :
-    //
     // Contrat :
-    //
+    // Rien à detruire
 
 //------------------------------------------------------------------- PRIVE
 
-protected:
-//------------------------------------------------------ Méthodes protégées
-
-private:
-//-------------------------------------------------------- Méthodes privées
-
-protected:
-//------------------------------------------------------ Attributs protégés
-
 private:
 //-------------------------------------------------------- Attributs privés
-int hour;
-int minute;
-int second;
-int timeZone; //_______________ ne prends pas en compte les demi heures
-int day;
-string month;
-int year;
-//----------------------------------------------------------- Classes amies
-
-//--------------------------------------------------------- Classes privées
-
-//------------------------------------------------------------ Types privés
-
+    int hour;
+    int minute;
+    int second;
+    int timeZone;
+    int day;
+    int year;
+    string month;
 };
-
-//------------------------------------------ Types dépendants de <Date>
 
 #endif // DATE_H

@@ -97,7 +97,7 @@ void GraphVizConverter::convert (list<string[3]> & graph,
 	}
 } //----- Fin de convert
 
-///------------------------------------------------- Surcharge d'op�rateurs
+///------------------------------------------------- Surcharge d'opérateurs
 GraphVizConverter & GraphVizConverter::operator =
 	( const GraphVizConverter & aGraphVizConverter )
 {
@@ -128,8 +128,6 @@ ostream & operator << ( ostream & os, const GraphVizConverter & aGVC )
 ///-------------------------------------------- Constructeurs - destructeur
 GraphVizConverter::GraphVizConverter
 	( const GraphVizConverter & aGraphVizConverter )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <GraphVizConverter>" << endl;
@@ -163,17 +161,8 @@ GraphVizConverter::GraphVizConverter ( bool           aPrintPNG,
 
 
 GraphVizConverter::~GraphVizConverter ( )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au destructeur de <GraphVizConverter>" << endl;
 #endif
 } //----- Fin de ~GraphVizConverter
-
-
-///------------------------------------------------------------------ PRIVE
-
-///----------------------------------------------------- M�thodes prot�g�es
-
-///------------------------------------------------------- M�thodes priv�es

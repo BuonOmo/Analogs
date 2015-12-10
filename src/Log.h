@@ -5,15 +5,14 @@
     copyright            : (C) 2015 par Adrien et Ulysse
 *************************************************************************/
 
-//---------- Interface de la classe <Log> (fichier Log.h) ------
+//--------------------- Interface de la classe <Log> (fichier Log.h) ------
 #ifndef LOG_H
 #define LOG_H
 
-//--------------------------------------------------- Interfaces utilisées
+//---------------------------------------------------- Interfaces utilisées
 #include <string>
-//------------------------------------------------------------- Constantes
 
-//------------------------------------------------------------------ Types
+//------------------------------------------------------------------- Types
 typedef struct Date
 {
 	int hour;
@@ -25,82 +24,63 @@ typedef struct Date
 	int year;
 } Date;
 
-//------------------------------------------------------------------------
-// Rôle de la classe <Log>
-//
-//
-//------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+// Log permet de gerer des attributs contenant les élements principaux
+// d’une ligne d’un fichier log. Et de les afficher.
+//-------------------------------------------------------------------------
 
 class Log
 {
-//----------------------------------------------------------------- PUBLIC
+//------------------------------------------------------------------ PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
+//------------------------------------------------------ Méthodes publiques
 
-    // ----------------------------------------------------------- GETTERS
-    // Mode d'emploi :
-    //
+    //------------------------------------------------------------- GETTERS
     // Contrat :
-    // renvoi la valeur de la variable annoncée
+    // Renvoi la valeur de la variable annoncée.
 
-    Date getDate();
+    Date getDate() const;
 
-    string getRoot();
+    string getRoot() const;
 
-    string getTarget();
+    string getTarget() const;
 
 
-//------------------------------------------------- Surcharge d'opérateurs
+//-------------------------------------------------- Surcharge d'opérateurs
     Log & operator = ( const Log & unLog );
-    // Mode d'emploi :
-    //
     // Contrat :
-    //
+    // Copie un à un les elements d’un Log.
 
     friend ostream & operator << ( ostream & os, const Log & unLog);
+	// Contrat :
+	// Affiche un log au format (Racine ; Cible ; Date).
 
-//-------------------------------------------- Constructeurs - destructeur
+//--------------------------------------------- Constructeurs - destructeur
     Log ( const Log & unLog );
-    // Mode d'emploi (constructeur de copie) :
-    //
     // Contrat :
-    //
+    // Voir operator =.
 
-    Log ( const Date & aDate,
-		  const string & aRoot,
-		  const string & aTarget
+    Log ( const Date   & aDate, // TODO daaaaaaaaaaaaaaaaaaaaaate new Date ()
+		  const string & aRoot   = "root",
+		  const string & aTarget = "target"
 		  );
     // Mode d'emploi :
-    //
+    // Entrer les valeurs des parametres.
     // Contrat :
-    //
+    // -
 
     virtual ~Log ( );
-    // Mode d'emploi :
-    //
     // Contrat :
-    //
+    // Rien à detruire.
 
-//------------------------------------------------------------------ PRIVE
-
-protected:
-//----------------------------------------------------- Méthodes protégées
+//------------------------------------------------------------------- PRIVE
 
 private:
-//------------------------------------------------------- Méthodes privées
-
-protected:
-//----------------------------------------------------- Attributs protégés
-
-private:
-//------------------------------------------------------- Attributs privés
+//-------------------------------------------------------- Attributs privés
     Date date;
     string root;
     string target;
-
 };
-
-//----------------------------------------- Types dépendants de <Log>
 
 #endif // LOG_H
