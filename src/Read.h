@@ -11,15 +11,17 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Log.h"
-//------------------------------------------------------------- Constantes 
+#include <fstream>
 
-//------------------------------------------------------------------ Types 
+//------------------------------------------------------------- Constantes
 
-//------------------------------------------------------------------------ 
+//------------------------------------------------------------------ Types
+
+//------------------------------------------------------------------------
 // Rôle de la classe <Read>
 //
 //
-//------------------------------------------------------------------------ 
+//------------------------------------------------------------------------
 
 class Read
 {
@@ -27,18 +29,18 @@ class Read
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    
+
     bool hasNextLog ( );
     // Mode d'emploi :
     // Verifie s’il reste encore un log dans le fichier.
-    // 
+    //
     // Contrat :
     // -
 
     Log readNextLog ( );
     // Mode d'emploi :
     // Lis la ligne suivant et renvoi un objet Log correspondant.
-    // 
+    //
     // Contrat :
     // -
 
@@ -63,7 +65,7 @@ public:
     // Appel le constructeur  avec  un  nom de fichier (à la racine) ou un
     // chemin.  Un mauvais adressage peut être detecté si un autre fichier
     // n’est pas ciblé.
-    // 
+    //
     // Contrat :
     // Le fichier ciblé par aFile doit être un fichier log.
 
@@ -73,7 +75,7 @@ public:
     // Contrat :
     //
 
-//------------------------------------------------------------------ PRIVE 
+//------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Méthodes protégées

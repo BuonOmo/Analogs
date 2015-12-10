@@ -13,8 +13,6 @@
 using namespace std;
 #include <iostream>
 #include <string>
-#include <fstream>
-#include <sstream>
 
 ///------------------------------------------------------ Include personnel
 #include "Read.h"
@@ -83,20 +81,20 @@ Log Read::readNextLog ( )
     line.replace ( line.find ( ':' ) , 1, 1, ' ' );
     line.replace ( line.find ( ':' ) , 1, 1, ' ' );
     line.replace ( line.find ( ':' ) , 1, 1, ' ' );
-    istringstream streamDate ( line );
-    streamDate >> date.day;
-    streamDate >> date.month;
-    streamDate >> date.year;
-    streamDate >> date.hour;
-    streamDate >> date.minute;
-    streamDate >> date.second;
-    if (streamDate.get() == 32) // 32 correspond à +
+    //istringstream streamDate ( line );
+    /*streamDate >>*/ date.day = 0;
+    /*streamDate >>*/ date.month = "0";
+    /*streamDate >>*/ date.year = 0;
+    /*streamDate >>*/ date.hour = 0;
+    /*streamDate >>*/ date.minute = 0;
+    /*streamDate >>*/ date.second = 0;
+    if (/*streamDate.get() == 32*/true) // 32 correspond à +
     {
-        streamDate >> date.timeZone;
+        /*streamDate >>*/ date.timeZone = 0;
     }
     else
     {
-        streamDate >> date.timeZone;
+        /*streamDate >>*/ date.timeZone = 0;
         date.timeZone = - date.timeZone;
     }
     date.timeZone /= 100;
@@ -105,11 +103,14 @@ Log Read::readNextLog ( )
 } //----- Fin de readNextLog
 
 ///------------------------------------------------- Surcharge d'opérateurs
-Read & Read::operator = ( const Read & unRead )
+Read & Read::operator = ( const Read & aRead )
 // Algorithme :
 //
 {
-	this -> file = unRead.file;
+    if (this != &aRead)
+    {
+        cerr << "impossible de copier le flux" << endl;
+    }
 	return *this;
 } //----- Fin de operator =
 
