@@ -11,8 +11,8 @@
 
 ///-------------------------------------------------------- Include système
 using namespace std;
-#include <iostream>
-#include <fstream>
+//#include <iostream>
+//#include <fstream>
 
 ///------------------------------------------------------ Include personnel
 #include "Graph.h"
@@ -35,7 +35,7 @@ void Graph::insertData()
 {
 	if (data == NULL)
 	{
-		cerr<< "No data sources"<< endl;
+		//cerr<< "No data sources"<< endl;
 	}
 	else
 	{
@@ -56,10 +56,7 @@ void Graph::insertData()
 
 			if (isOptionMatch)//--------------------TODO fonctione des options
 			{
-				string root ;
-				cin >> root;
-				string target;
-				cin >> target;
+
 
 				map<string, map<string,int>* >::iterator it = graph.find(target);
 				if (it == graph.end())
@@ -67,7 +64,7 @@ void Graph::insertData()
 					map<string,int> *pGraphRootPart = new map<string, int>;
 					(*pGraphRootPart) [root]=1;
 					graph[target]=pGraphRootPart;
-					cout<<"Graph :: insrte Data création d'une target et d'une root"<< endl;
+					//cout<<"Graph :: insrte Data création d'une target et d'une root"<< endl;
 				}
 				else
 				{
@@ -77,12 +74,12 @@ void Graph::insertData()
 					if (sMIt == pGraphRootPart->end())
 					{
 						(*pGraphRootPart)[root]=1;
-						cout << "Graph :: insrte Data  création  d'une root" << endl;
+						//cout << "Graph :: insrte Data  création  d'une root" << endl;
 					}
 					else
 					{
 						sMIt->second++;
-						cout << "Graph :: insrte Data  root et taget existe : incrémentation"<< endl;
+						//cout << "Graph :: insrte Data  root et taget existe : incrémentation"<< endl;
 					}
 				}
 			}
