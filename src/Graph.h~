@@ -15,8 +15,7 @@ using namespace std;
 #include <string>
 #include <map>
 #include <list>
-#include "Graph.h"
-#include "Log.h"
+
 
 //------------------------------------------------------------- Constantes
 
