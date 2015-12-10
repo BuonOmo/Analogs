@@ -18,7 +18,6 @@ using namespace std;
 #include "Read.h"
 
 ///----------------------------------------------------------------- PUBLIC
-///-------------------------------------------------------- Fonctions amies
 
 ///----------------------------------------------------- Méthodes publiques
 
@@ -117,23 +116,15 @@ Read & Read::operator = ( const Read & aRead )
 
 ///-------------------------------------------- Constructeurs - destructeur
 Read::Read ( const Read & unRead )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Read>" << endl;
 #endif
-
-    if (this != &unRead)
-    {
-    	*this = unRead;
-    }
+    *this = unRead;
 } //----- Fin de Read (constructeur de copie)
 
 
 Read::Read ( const string & aFile )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Read>" << endl;
@@ -156,17 +147,8 @@ Read::Read ( const string & aFile )
 
 
 Read::~Read ( )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Read>" << endl;
 #endif
 } //----- Fin de ~Read
-
-
-///------------------------------------------------------------------ PRIVE
-
-///----------------------------------------------------- Méthodes protégées
-
-///------------------------------------------------------- Méthodes privées
