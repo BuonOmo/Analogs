@@ -66,7 +66,8 @@ Log Read::readNextLog ( )
     int targetLength ( targetEnd - targetBegin );
     string target ( line.substr ( targetBegin, targetLength ) );
     //----- recherche de la date
-    Date date;
+    string month;
+    int newDate[6];
     int dateBegin ( line.find ( '[' ) + 1);
     line = line.substr ( dateBegin, line.find( ']') - dateBegin );
     line.replace ( line.find ( '/' ) , 1, 1, ' ' );
@@ -75,23 +76,29 @@ Log Read::readNextLog ( )
     line.replace ( line.find ( ':' ) , 1, 1, ' ' );
     line.replace ( line.find ( ':' ) , 1, 1, ' ' );
     //istringstream streamDate ( line );
-    /*streamDate >>*/ date.day = 0;
-    /*streamDate >>*/ date.month = "0";
-    /*streamDate >>*/ date.year = 0;
-    /*streamDate >>*/ date.hour = 0;
-    /*streamDate >>*/ date.minute = 0;
-    /*streamDate >>*/ date.second = 0;
+    /*streamDate >>*/ newDate[4] = 0;
+    /*streamDate >>*/ month = "0";
+    /*streamDate >>*/ newDate[5] = 0;
+    /*streamDate >>*/ newDate[0] = 0;
+    /*streamDate >>*/ newDate[1] = 0;
+    /*streamDate >>*/ newDate[2] = 0;
     if (/*streamDate.get() == 32*/true) // 32 correspond à +
     {
-        /*streamDate >>*/ date.timeZone = 0;
+        /*streamDate >>*/ newDate[3] = 0;
     }
     else
     {
-        /*streamDate >>*/ date.timeZone = 0;
-        date.timeZone = - date.timeZone;
-    }
-    date.timeZone /= 100;
-
+        /*streamDate >>*/ newDate[3] = 0;
+        newDate[3] = - newDate[3];
+    };
+    newDate[3] /= 100;
+    Date date ( newDate[0],
+                newDate[1],
+                newDate[2],
+                newDate[3],
+                newDate[4],
+                newDate[5],
+                month);
     return *(new Log(date, root, target));
 } //----- Fin de readNextLog
 
