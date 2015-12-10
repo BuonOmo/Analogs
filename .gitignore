@@ -1,4 +1,4 @@
-Tests.tgz n anonyme.log
+Tests.tgz
 anonyme.log
 .cproject
 Debug/
@@ -6,4 +6,4 @@ Debug/
 .project
 .settings/
 Tests.tgz
-doc/REGEX.re
+doc/REGEX
