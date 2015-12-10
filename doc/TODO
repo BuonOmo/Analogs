@@ -1,4 +1,4 @@
 - Read :
     - réimplementer les sstream et reprendre le calcul de date
-- remplacer l’usage de la structure date par la classe date. (surtout dans Log, et dans son affichage)
+- remplacer l’usage de la structure date par la classe date.
 - choix de l’heure : absolue ou relative

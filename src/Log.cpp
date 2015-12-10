@@ -49,15 +49,10 @@ Log & Log::operator = ( const Log & aLog )
 
 ostream & operator << ( ostream & os, const Log & aLog)
 {
-    os << "( " << aLog.root << " ; " << aLog.target << " ; ";
-    os << aLog.date.day << " ; ";
-    os << aLog.date.month << " ; ";
-    os << aLog.date.year << " ; ";
-    os << aLog.date.hour << " ; ";
-    os << aLog.date.minute << " ; ";
-    os << aLog.date.second << " ; ";
-    os <<  (( aLog.date.timeZone >= 0 ) ? '+' : '-' );
-    os << aLog.date.timeZone << " )" << endl;
+    os << "( ";
+	os << aLog.root << " ; ";
+	os << aLog.target << " ; ";
+    os << aLog.date << " )";
 	return os;
 } //----- Fin de operator <<
 

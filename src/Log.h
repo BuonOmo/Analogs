@@ -10,19 +10,8 @@
 #define LOG_H
 
 //---------------------------------------------------- Interfaces utilisées
+#include "Date.h"
 #include <string>
-
-//------------------------------------------------------------------- Types
-typedef struct Date
-{
-	int hour;
-	int minute;
-	int second;
-	int timeZone; //_______________ ne prends pas en compte les demi heures
-	int day;
-	string month;
-	int year;
-} Date;
 
 //-------------------------------------------------------------------------
 // Log permet de gerer des attributs contenant les élements principaux
@@ -61,7 +50,7 @@ public:
     // Contrat :
     // Voir operator =.
 
-    Log ( const Date   & aDate, // TODO daaaaaaaaaaaaaaaaaaaaaate new Date ()
+    Log ( const Date   & aDate   = *(new Date ()),
 		  const string & aRoot   = "root",
 		  const string & aTarget = "target"
 		  );
