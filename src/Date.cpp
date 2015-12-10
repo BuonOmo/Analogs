@@ -38,9 +38,17 @@ int Date::getHour () const
 
 //-------------------------------------------------- Surcharge d'opérateurs
 Date & Date::operator = ( const Date & aDate )
-// Algorithme :
-//
 {
+    if (this != &aDate) {
+        hour = aDate.hour;
+        minute = aDate.minute;
+        second = aDate.second;
+        timeZone = aDate.timeZone;
+        day = aDate.day;
+        year = aDate.year;
+        month = aDate.month;
+    }
+    return *this;
 } //----- Fin de operator =
 
 ostream & operator << ( ostream & os, const Date & aDate)
@@ -65,11 +73,12 @@ ostream & operator << ( ostream & os, const Date & aDate)
 //--------------------------------------------- Constructeurs - destructeur
 Date::Date ( const Date & aDate )
 // Algorithme :
-//
+// Utilisation de la surcharge
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Date>" << endl;
 #endif
+    *this = aDate;
 } //----- Fin de Date (constructeur de copie)
 
 
@@ -86,8 +95,8 @@ Date::Date ( 	int aHour,
             second ( aSecond ),
             timeZone ( aTimeZone ),
             day ( aDay ),
-            year ( aYear )
-            month ( aMonth ),
+            year ( aYear ),
+            month ( aMonth )
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Date>" << endl;
