@@ -12,8 +12,8 @@ REALPATH =../src/
 OBJ      = $(OBJPATH)$(INT:.h=.o) main.o
 OBJPATH  =
 LIBPATH  = #-L
-INCPATH  = #-I 
-LIBS     = #-lm 
+INCPATH  = #-I
+LIBS     = #-lm
 
 ECHO  = @echo
 EXE   = EXE
@@ -29,6 +29,7 @@ $(EXE) : $(OBJ)
 	$(COMP) $(CPPFLAGS) $(INCPATH) -c $<
 
 Log.o  : $(INTPATH)Log.h
+GraphVizConverter.o : $(INTPATH)GraphVizConverter.h
 Read.o : $(INTPATH)Read.h $(INTPATH)Log.h
 Graph.o : $(INTPATH)Graph.h $(INTPATH)Read.h $(INTPATH)Log.h
 
@@ -37,6 +38,6 @@ Graph.o : $(INTPATH)Graph.h $(INTPATH)Read.h $(INTPATH)Log.h
 
 
 
-Clean : 
+Clean :
 	$(ECHO) "Nettoyage du repertoire..."
 	$(RM) $(RMFLAGS) $(EXE) $(OBJ) core

@@ -28,8 +28,7 @@ void GraphVizConverter::showParameters () const
 	cout << *this << endl;
 } //----- Fin de showParameters
 
-void GraphVizConverter::modifyParameters
-	( int param, const string & value )
+void GraphVizConverter::modifyParameter ( int param, const string & value )
 {
 	switch (param) {
 		case 0 : printPNG = (value == "true") ? true : false;
@@ -112,19 +111,18 @@ GraphVizConverter & GraphVizConverter::operator =
 	return *this;
 } //----- Fin de operator =
 
-ostream & operator <<
-	( ostream & os, const GraphVizConverter & aGVC )
+ostream & operator << ( ostream & os, const GraphVizConverter & aGVC )
 {
 	os << "Creation et affichage de l’image : ";
-	os << aGVC.printPNG ? "oui" : "non" << endl;
+	string print = (aGVC.printPNG) ? "oui" : "non";
+	os << print << endl;
 	os << "Titre : "                      << aGVC.title      << endl;
 	os << "Forme des fins de fleches : "  << aGVC.shapeArrow << endl;
 	os << "Forme des bases de fleches : " << aGVC.shapeTail  << endl;
 	os << "Forme des boites : "           << aGVC.shapeNode  << endl;
 	os << "Couleur des liens : "          << aGVC.colorLink  << endl;
 	os << "Couleur des boites : "         << aGVC.colorNode;
-
-
+	return os;
 } //----- Fin de operator <<
 
 ///-------------------------------------------- Constructeurs - destructeur
