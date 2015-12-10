@@ -49,7 +49,7 @@ void Graph::insertData()
 			string extantion = root.substr (root.size()-4,4);
 			bool isAWebPage = (extantion.compare(".css")!=0 && extantion.compare(".png")!=0);
 
-			bool isOptionMatch = (!optHour || date.hour == hourInOpt) // option heur -> heur conincide avec l'heur mise en option.
+			bool isOptionMatch = (!optHour || date.getHour() == hourInOpt) // option heur -> heur conincide avec l'heur mise en option.
 					&&
 					(!optExclude || isAWebPage ); // --------------TODO verifi
 
