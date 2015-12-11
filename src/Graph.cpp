@@ -99,13 +99,13 @@ void Graph::insertDataSources(const Read & aData)
 	data= new Read(aData);
 }
 
-list<string [3]> Graph::allLinks()
+list<string *> Graph::allLinks()
 {
-	list<string[3]> allLink;
+	list<string*> allLink;
     for (map<string,map<string,int>*>::iterator itGraphe = graph.begin(); itGraphe !=graph.end(); itGraphe++)
     	for (map<string,int>::iterator itLinkGraphe = itGraphe->second->begin(); itLinkGraphe != itGraphe->second->end(); itLinkGraphe ++)
     	{
-    		string aLink[3];
+    		string* aLink = new string[3];
     		aLink[2] = itLinkGraphe->second;
     		aLink[0] = itLinkGraphe->first;
     		aLink[1] = itGraphe->first;

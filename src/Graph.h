@@ -11,12 +11,12 @@
 
 //--------------------------------------------------- Interfaces utilisées
 using namespace std;
-#include "Read.h"
+//class Read;
 #include <string>
+#include "Read.h"
 #include <map>
 #include <list>
-#include "Graph.h"
-#include "Log.h"
+//#include "Log.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -46,7 +46,7 @@ void insertOption (bool aOptVisual,  bool aOptExclude,  bool aOptHour, int aHour
 
 void insertDataSources (const Read & aData );
 
-list<string [3]> allLinks();
+list<string*> allLinks();
 
 //------------------------------------------------- Surcharge d'opérateurs
 	Graph & operator = (  Graph & aGraph );
