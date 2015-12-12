@@ -1,11 +1,11 @@
 /*************************************************************************
-                      Read  -  classe de lecture de log
+						Graph  -  gestion de graphs
                              -------------------
     début                : 1 dec. 2015
     copyright            : (C) 2015 par Ulysse et Adrien
 *************************************************************************/
 
-///---------- Réalisation de la classe <Read> (fichier Read.cpp) --
+///---------- Réalisation de la classe <Graph> (fichier Graph.cpp) --
 
 ///---------------------------------------------------------------- INCLUDE
 
@@ -13,7 +13,7 @@
 using namespace std;
 //#include <iostream>
 //#include <fstream>
-#include "Graph.h" 
+#include "Graph.h"
 
 ///------------------------------------------------------ Include personnel
 
