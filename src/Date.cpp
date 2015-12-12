@@ -45,19 +45,19 @@ Date & Date::operator = ( const Date & aDate )
 
 ostream & operator << ( ostream & os, const Date & aDate)
 {
-    string zero = (day < 10) ? "0" : "";
-    os << '[' << zero << day;
-    os << '/' << month;
-    os << '/' << year;
-    zero = (hour < 10) ? "0" : "";
-    os << ':' << zero << hour;
-    zero = (minute < 10) ? "0" : "";
-    os << ':' << zero << minute;
-    zero = (second < 10) ? "0" : "";
-    os << ':' << zero << second;
-    char plus = (timeZone < 0) ? '-' : '+';
-    zero = (timeZone < 10) ? "0" : "";
-    os << ' ' << plus << zero << timeZone;
+    string zero = (aDate.day < 10) ? "0" : "";
+    os << '[' << zero << aDate.day;
+    os << '/' << aDate.month;
+    os << '/' << aDate.year;
+    zero = (aDate.hour < 10) ? "0" : "";
+    os << ':' << zero << aDate.hour;
+    zero = (aDate.minute < 10) ? "0" : "";
+    os << ':' << zero << aDate.minute;
+    zero = (aDate.second < 10) ? "0" : "";
+    os << ':' << zero << aDate.second;
+    char plus = (aDate.timeZone < 0) ? '-' : '+';
+    zero = (aDate.timeZone < 10) ? "0" : "";
+    os << ' ' << plus << zero << aDate.timeZone;
     os << "00]";
     return os;
 } //----- Fin de operator <<

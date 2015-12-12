@@ -2,3 +2,5 @@
     - réimplementer les sstream et reprendre le calcul de date
 - remplacer l’usage de la structure date par la classe date.
 - choix de l’heure : absolue ou relative
+- Suprimer les log de l'intranet
+- ERROR 404 ?
