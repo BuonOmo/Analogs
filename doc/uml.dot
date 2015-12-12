@@ -1,5 +1,28 @@
 digraph UML
 {
+	splines=ortho
+
+	Date
+	[
+		label =
+			"{
+				Date
+			|
+				+ hour     : int\l
+		    	+ minute   : int\l
+		    	+ second   : int\l
+		    	+ timeZone : int\l
+		    	+ day      : int\l
+		    	+ year     : int\l
+		    	+ month    : string\l
+			|
+				+ getHour()     : int\l
+				+ operator =()  : Date\l
+				+ operator \<\<() : Date\l
+			}",
+		shape=record
+	]
+
 	Read
 	[
 		label =
@@ -83,5 +106,13 @@ digraph UML
 		arrowhead=diamond,
 		taillabel=1,
 		headlabel="1 "
+	]
+
+	GraphVizConverter -> Graph1
+	[
+		arrowhead=vee,
+		taillabel="1",
+		headlabel="N ",
+		style=dashed
 	]
 }

@@ -1,22 +1,22 @@
 /*************************************************************************
-                      Read  -  classe de lecture de log
+                    	Graph  -  gestion de graphs
                              -------------------
     début                : 1 dec. 2015
     copyright            : (C) 2015 par Ulysse et Adrien
 *************************************************************************/
 
-//---------- Interface de la classe <Read> (fichier Read.h) ------
+//---------- Interface de la classe <Graph> (fichier Graph.h) ------
 #ifndef GRAPH_H
 #define GRAPH_H
 
 //--------------------------------------------------- Interfaces utilisées
 using namespace std;
-//class Read;
+//class Graph;
 #include <string>
 #include "Read.h"
 #include <map>
 #include <list>
-//#include "Log.h"
+#include "Log.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -28,7 +28,7 @@ typedef struct Link{
 }Link;
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Read>
+// Rôle de la classe <Graph>
 //
 //
 //------------------------------------------------------------------------
@@ -110,7 +110,6 @@ private:
 
 };
 
-//----------------------------------------- Types dépendants de <Read>
+//----------------------------------------- Types dépendants de <Graph>
 
-#endif // READ_H
-
+#endif // GRAPH_H
