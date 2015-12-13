@@ -53,8 +53,15 @@ Log Read::readNextLog ( )
     //----- recherche de la racine
     string rootFinder ( "\"GET " );
     int rootBegin  ( line.find ( rootFinder ) + rootFinder.size ( ) );
+    cout << rootBegin << endl;
     int rootEnd    ( line.find ( " HTTP", rootBegin ) );
     int rootLength ( rootEnd - rootBegin );
+    if (rootLength == 0)
+    {
+        cout << "La taille de la racine n’est pas bonne :" << endl;
+        cout << line << endl;
+        cout << "____________________________________________________" << endl;
+    }
     string root ( line.substr ( rootBegin, rootLength ) );
     //----- recherche de la cible
     int targetBegin  ( line.find ( '"', rootEnd + 15) + 1 );

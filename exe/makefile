@@ -3,7 +3,7 @@ EDL      = g++
 RM       = rm
 RMFLAGS  = -f
 OUTPUT   = -o
-CPPFLAGS = -Wall -DMAP
+CPPFLAGS = -Wall #-DMAP
 INTPATH  = ../src/
 INT      = Log.h Read.h GraphVizConverter.h Graph.h Date.h
 INTPATH  =../src/
@@ -30,7 +30,7 @@ $(EXE) : $(OBJ)
 
 Date.o : $(INTPATH)Date.h
 Log.o  : $(INTPATH)Log.h $(INTPATH)Date.h
-GraphVizConverter.o : $(INTPATH)GraphVizConverter.h 
+GraphVizConverter.o : $(INTPATH)GraphVizConverter.h
 Read.o : $(INTPATH)Read.h $(INTPATH)Log.h $(INTPATH)Date.h
 Graph.o : $(INTPATH)Graph.h $(INTPATH)Read.h $(INTPATH)Log.h $(INTPATH)Date.h
 
