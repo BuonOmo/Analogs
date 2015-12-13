@@ -107,13 +107,13 @@ public:
 
 private:
 //------------------------------------------------------- Attributs privés
-	string colorNode;
-    string colorLink;
-	string shapeNode;
-    string shapeArrow;
-    string shapeTail;
-	string title;
 	bool printPNG;
+	string title;
+    string shapeArrow;
+    string colorLink;
+	string colorNode;
+	string shapeNode;
+    string shapeTail;
 };
 
 #endif // GRAPHVIZCONVERTER_H
