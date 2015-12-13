@@ -53,7 +53,7 @@ public:
     // Les cohérances avec le langage graphViz sont à verifier par
     // l’utilisateur.
 
-	void convert (list<string[3]> & graph,
+	void convert (list<string*>  graph,
 				  const string & nameBase = "graph",
 				  const string & path     = "") const;
     // Mode d'emploi :

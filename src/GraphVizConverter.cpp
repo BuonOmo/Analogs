@@ -48,7 +48,7 @@ void GraphVizConverter::modifyParameter ( int param, const string & value )
 	}
 } //----- Fin de modifyParameters
 
-void GraphVizConverter::convert (list<string[3]> & graph,
+void GraphVizConverter::convert (list<string*>  graph,
 								 const string & nameBase,
 								 const string & path) const
 {
@@ -73,7 +73,7 @@ void GraphVizConverter::convert (list<string[3]> & graph,
 		file << ", arrowtail=" << shapeTail;
 		file << "];"           << endl;
 		// Création des liens
-		for (list<string[3]>::const_iterator it = graph.begin(); it != graph.end(); ++it)
+		for (list<string*>::const_iterator it = graph.begin(); it != graph.end(); ++it)
 		{
 			file << '"' << (*it)[0] << '"';
 			file << " -> ";
@@ -86,9 +86,12 @@ void GraphVizConverter::convert (list<string[3]> & graph,
 		file.close();
 		if (printPNG)
 		{
-			system("dot -Tpng -o results/graph.png results/graph.dot");
-			system("eog results/graph.png");
+			string instruction = "dot -Tpng -o "+toOpen+".png"+ toOpen+".dot";
+			system(instruction.c_str());
+			instruction = "eog "+toOpen+".png";
+			system(instruction.c_str());
 		}
+		//delete(*it);
 	}
 	else
 	{

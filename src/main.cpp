@@ -14,6 +14,7 @@ using namespace std;
 #include <string>
 #include <cstdlib>
 #include "Graph.h"
+#include "GraphVizConverter.h"
 
 
 bool setOption (int argc, char* argv[],bool& grapOpt,bool& timeOpt,bool& excludOpt, string& grapOptFile,int& timeOptHour, string& logFilAdresse);
@@ -23,19 +24,28 @@ int main(int argc, char* argv[])
 
 	// ---------------------------------------------------test des argc/argv
 
-	bool grapOpt= false;
+	bool graphOpt= false;
 	bool timeOpt = false;
 	bool excludOpt = false;
 	string grapOptFile;
 	int timeOptHour;
 	string logFilAdresse;
-	if ( !setOption (argc, argv, grapOpt,timeOpt, excludOpt, grapOptFile,timeOptHour, logFilAdresse))
+	if ( !setOption (argc, argv, graphOpt,timeOpt, excludOpt, grapOptFile,timeOptHour, logFilAdresse))
 	{
 	return 0;
 	}
 	cout << logFilAdresse << endl;
-	Graph graph(logFilAdresse, grapOpt, excludOpt, timeOpt, timeOptHour);
-	cout << graph << endl;
+	Graph graph(logFilAdresse, graphOpt, excludOpt, timeOpt, timeOptHour);
+	if (graphOpt)
+	{
+		GraphVizConverter converter;
+		converter.convert(graph.allLinks(),"",logFilAdresse);
+
+	}
+	else 
+	{
+		cout << graph << endl;
+	}
 
 
 	return 0;
