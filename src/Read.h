@@ -80,7 +80,7 @@ public:
 private:
 //------------------------------------------------------- Attributs privés
     ifstream file;
-
+    string fileName;
 };
 
 #endif // READ_H
