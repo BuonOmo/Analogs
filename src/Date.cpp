@@ -32,13 +32,13 @@ int Date::getHour () const
 Date & Date::operator = ( const Date & aDate )
 {
     if (this != &aDate) {
-        hour = aDate.hour;
-        minute = aDate.minute;
-        second = aDate.second;
+        hour     = aDate.hour;
+        minute   = aDate.minute;
+        second   = aDate.second;
         timeZone = aDate.timeZone;
-        day = aDate.day;
-        year = aDate.year;
-        month = aDate.month;
+        day      = aDate.day;
+        year     = aDate.year;
+        month    = aDate.month;
     }
     return *this;
 } //----- Fin de operator =
