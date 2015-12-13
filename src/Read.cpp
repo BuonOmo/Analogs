@@ -31,7 +31,7 @@ bool Read::hasNextLog ( )
 	{
 		char c;
 		file.get(c);
-		if ( (int)c == 1 && file.eof() )
+		if ( (int)c == 49 && file.eof() ) // 1 = 49 en ASKI
 		{
 			file.unget();
 #ifdef MAP
@@ -130,7 +130,7 @@ Read::Read ( const string & aFile )
     cout << "Appel au constructeur de <Read>" << endl;
 #endif
 
-    if (aFile.rfind(".log\0") != string::npos)
+    if (aFile.find(".log\0") == string::npos)
     {
     	cerr << "Le fichier selectionné n’est pas un fichier .log"<< endl;
     	return;
