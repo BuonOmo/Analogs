@@ -27,13 +27,16 @@ bool Read::hasNextLog ( )
 #ifdef MAP
     cout << "Appel à la methode Read::hasNextLog" << endl;
 #endif
-	if ( !(file -> eof()) && file -> peek() != EOF/*char_traits<wchar_t>::eof()*/ )
+    file -> get();
+	if ( !(file -> eof() || file -> peek() == char_traits<wchar_t>::eof() ))
 	{
+        file -> unget();
 #ifdef MAP
 	cout << "Read::hasNextLog = true" << endl;
 #endif
 		return true;
 	}
+    file -> unget();
 #ifdef MAP
 	cout << "Read::hasNextLog = false" << endl;
 #endif
