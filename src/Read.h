@@ -79,7 +79,8 @@ public:
 
 private:
 //------------------------------------------------------- Attributs privés
-    ifstream file;
+
+    ifstream *file;
     string fileName;
 };
 

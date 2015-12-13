@@ -27,9 +27,10 @@ bool Read::hasNextLog ( )
 #ifdef MAP
     cout << "Appel à la methode Read::hasNextLog" << endl;
 #endif
-    file.open(fileName.c_str(), ios::in);
-	if ( !file.eof() && file.peek() != EOF/*char_traits<wchar_t>::eof()*/ )
+    char c = file -> get();
+	if ( !(file -> eof() || file -> peek() == EOF/*char_traits<wchar_t>::eof()*/ ))
 	{
+        file -> unget();
 #ifdef MAP
 	cout << "Read::hasNextLog = true" << endl;
 #endif
@@ -47,7 +48,7 @@ Log Read::readNextLog ( )
     cout << "Appel à la methode Read::readNextLog" << endl;
 #endif
     string line;
-    getline(file, line);
+    getline(*file, line);
     //----- recherche de la racine
     string rootFinder ( "\"GET " );
     int rootBegin  ( line.find ( rootFinder ) + rootFinder.size ( ) );
@@ -94,7 +95,6 @@ Log Read::readNextLog ( )
                 newDate[5],
                 month);
     return *(new Log(date, root, target));
-    file.close();
 } //----- Fin de readNextLog
 
 ///------------------------------------------------- Surcharge d'opérateurs
@@ -132,13 +132,12 @@ Read::Read ( const string & aFile ) : fileName(aFile)
     	return;
     }
 
-    ifstream file(aFile.c_str(), ios::in);
+    file = new ifstream (aFile.c_str(), fstream::in);
 
-    if (!file)
+    if (!*(file))
     {
 		cerr << "Impossible d'ouvrir le fichier " << aFile << '.' <<endl;
 	}
-    file.close();
 } //----- Fin de Read
 
 
