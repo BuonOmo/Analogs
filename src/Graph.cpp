@@ -5,30 +5,30 @@
     copyright            : (C) 2015 par Ulysse et Adrien
 *************************************************************************/
 
-///---------- Réalisation de la classe <Graph> (fichier Graph.cpp) --
+//----------- Réalisation de la classe <Graph> (fichier Graph.cpp) --
 
-///---------------------------------------------------------------- INCLUDE
+//----------------------------------------------------------------- INCLUDE
 
-///-------------------------------------------------------- Include système
+//--------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
 //#include <fstream>
 #include "Graph.h"
 
-///------------------------------------------------------ Include personnel
+//------------------------------------------------------- Include personnel
 
 
-///------------------------------------------------------------- Constantes
+//-------------------------------------------------------------- Constantes
 
-///---------------------------------------------------- Variables de classe
+//----------------------------------------------------- Variables de classe
 
-///----------------------------------------------------------- Types privés
+//------------------------------------------------------------ Types privés
+typedef map<string, int> shortGraph;
+typedef map<string,shortGraph*> fullGraph;
+//------------------------------------------------------------------ PUBLIC
+//--------------------------------------------------------- Fonctions amies
 
-
-///----------------------------------------------------------------- PUBLIC
-///-------------------------------------------------------- Fonctions amies
-
-///----------------------------------------------------- Méthodes publiques
+//------------------------------------------------------ Méthodes publiques
 
 void Graph::insertData()
 // Algorithme :
@@ -68,19 +68,19 @@ void Graph::insertData()
 			{
 
 
-				map<string, map<string,int>* >::iterator it = graph.find(target);
+				fullGraph::iterator it = graph.find(target);
 				if (it == graph.end())
 				{
-					map<string,int> *pGraphRootPart = new map<string, int>;
+					shortGraph *pGraphRootPart = new shortGraph;
 					(*pGraphRootPart) [root]=1;
 					graph[target]=pGraphRootPart;
 					//cout<<"Graph :: insrte Data création d'une target et d'une root"<< endl;
 				}
 				else
 				{
-					map<string,int> *pGraphRootPart;
+					shortGraph *pGraphRootPart;
 					pGraphRootPart = it->second ;
-					map<string,int >::iterator sMIt = pGraphRootPart->find(root);
+					shortGraph::iterator sMIt = pGraphRootPart->find(root);
 					if (sMIt == pGraphRootPart->end())
 					{
 						(*pGraphRootPart)[root]=1;
@@ -113,8 +113,8 @@ void Graph::insertDataSources(const string & aDataFile)
 list<string *> Graph::allLinks()
 {
 	list<string*> allLink;
-    for (map<string,map<string,int>*>::iterator itGraphe = graph.begin(); itGraphe !=graph.end(); itGraphe++)
-    	for (map<string,int>::iterator itLinkGraphe = itGraphe->second->begin(); itLinkGraphe != itGraphe->second->end(); itLinkGraphe ++)
+    for (fullGraph::iterator itGraphe = graph.begin(); itGraphe !=graph.end(); itGraphe++)
+    	for (shortGraph::iterator itLinkGraphe = itGraphe->second->begin(); itLinkGraphe != itGraphe->second->end(); itLinkGraphe ++)
     	{
     		string* aLink = new string[3];
     		aLink[2] = itLinkGraphe->second;
@@ -125,13 +125,13 @@ list<string *> Graph::allLinks()
     return allLink;
 }
 
-void Graph::print(ostream &flux)
+void Graph::print(ostream &flux) const
 {
 	for (int i(0); i< 10 ;i++)
 	{
 		int max =0;
 		string targetMax;
-		for (map<string,map<string,int>*>::iterator itGraphe = graph.begin(); itGraphe !=graph.end(); itGraphe++)
+		for (fullGraph::const_iterator itGraphe = graph.begin(); itGraphe !=graph.end(); itGraphe++)
 		{
 			int curNbHit =itGraphe->second->find ("all")->second;
 			if (max < curNbHit)
@@ -147,21 +147,19 @@ void Graph::print(ostream &flux)
 			flux << targetMax << " " << max << endl ;
 		}
 	}
-insertData;
+//insertData;
 }
 
 
 
-///------------------------------------------------- Surcharge d'opérateurs
-ostream& operator <<( ostream &flux, const Graph & aGrpah)
+//-------------------------------------------------- Surcharge d'opérateurs
+ostream& operator <<( ostream &flux, const Graph & aGraph)
 {
-    aGrpah.print(flux);
+    aGraph.print(flux);
     return flux;
 }
 
 Graph & Graph::operator = (  Graph & unGraph )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel a la surcharge de = de <Graph>" << endl;
@@ -173,7 +171,7 @@ Graph & Graph::operator = (  Graph & unGraph )
 	hourInOpt = unGraph.hourInOpt;
 
 	// ------------------- supertion du graphe existant
-    for (map<string,map<string,int>*>::iterator itGraphe = graph.begin(); itGraphe !=graph.end(); itGraphe++)
+    for (fullGraph::iterator itGraphe = graph.begin(); itGraphe !=graph.end(); itGraphe++)
     {
     	delete itGraphe->second;// -----------------TODO verifier si ok
     }
@@ -181,16 +179,16 @@ Graph & Graph::operator = (  Graph & unGraph )
 	graph.erase(graph.begin(),graph.end());
 
 
-    for ( map<string,map<string,int>*>::iterator itGraphe = unGraph.graph.begin(); itGraphe !=unGraph.graph.end(); itGraphe++)
+    for ( fullGraph::iterator itGraphe = unGraph.graph.begin(); itGraphe !=unGraph.graph.end(); itGraphe++)
     {
-    	graph[itGraphe->first] = new map<string,int>(  * itGraphe->second );
+    	graph[itGraphe->first] = new shortGraph(  * itGraphe->second );
     }
     return * this ;
 
 } //----- Fin de operator =
 
 
-///-------------------------------------------- Constructeurs - destructeur
+//--------------------------------------------- Constructeurs - destructeur
 Graph::Graph (const string & aDataFile, bool aOptVisual,  bool aOptExclude,  bool aOptHour, int aHourInOpt)
 {
 #ifdef MAP
@@ -202,10 +200,9 @@ Graph::Graph (const string & aDataFile, bool aOptVisual,  bool aOptExclude,  boo
 	optHour = aOptHour;
 	hourInOpt = aHourInOpt;
 	insertData();
-}
+} //----- Fin de Graph
+
 Graph::Graph ( Graph & unGraph)
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Graph>" << endl;
@@ -215,17 +212,14 @@ Graph::Graph ( Graph & unGraph)
 	optExclude = unGraph.optExclude;
 	optHour = unGraph.optHour;
 	hourInOpt = unGraph.hourInOpt;
-    for ( map<string,map<string,int>*>::iterator itGraphe = unGraph.graph.begin(); itGraphe !=unGraph.graph.end(); itGraphe++)
+    for ( fullGraph::iterator itGraphe = unGraph.graph.begin(); itGraphe !=unGraph.graph.end(); itGraphe++)
     {
-    	graph[itGraphe->first] = new map<string,int>(  * itGraphe->second );
+    	graph[itGraphe->first] = new shortGraph(  * itGraphe->second );
     }
-
-} //----- Fin de Read (constructeur de copie)
+} //----- Fin de Graph (constructeur de copie)
 
 
 Graph::Graph()
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au constructeur par défeau de <Graph>" << endl;
@@ -235,26 +229,16 @@ Graph::Graph()
 	optExclude = false;
 	optHour = false;
 	hourInOpt = 0 ;
-
-} //----- Fin de Read
+} //----- Fin de Graph
 
 
 Graph::~Graph ( )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Graph>" << endl;
 #endif
-    for (map<string,map<string,int>*>::iterator itGraphe = graph.begin(); itGraphe !=graph.end(); itGraphe++)
+    for (fullGraph::iterator itGraphe = graph.begin(); itGraphe !=graph.end(); itGraphe++)
     {
     	delete itGraphe->second;
     }
 } //----- Fin de ~Graph
-
-
-///------------------------------------------------------------------ PRIVE
-
-///----------------------------------------------------- Méthodes protégées
-
-///------------------------------------------------------- Méthodes privées

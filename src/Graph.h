@@ -48,7 +48,7 @@ void insertDataSources (const string & aDataFile );
 
 list<string*> allLinks();
 
-void print(ostream &flux);
+void print(ostream &flux) const;
 
 //------------------------------------------------- Surcharge d'opérateurs
 friend ostream& operator <<( ostream &flux, const Graph & aGrpah);

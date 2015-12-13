@@ -64,15 +64,15 @@ bool setOption (int argc, char*  argv[], bool& grapOpt,bool& timeOpt,bool& exclu
 				grapOpt = true;
 				i++;
 				grapOptFile = argv[i];
-				if (grapOptFile.compare("-e")==0 
+				if (grapOptFile.compare("-e")==0
 					|| grapOptFile.compare("-h")==0
 					|| grapOptFile.find(".log") != string::npos)
 
 					{
-						cerr <<"\"" << grapOptFile <<"\""<< 
+						cerr <<"\"" << grapOptFile <<"\""<<
 						" n'est pas une destination"<<endl<<
 						" inssérer une destination aprais -g" << endl;
-						
+
 					}
 			}
 
@@ -105,7 +105,7 @@ bool setOption (int argc, char*  argv[], bool& grapOpt,bool& timeOpt,bool& exclu
 				timeOpt = true;
 				i++;
 				timeOptHour = atoi(argv[i]);
-				if (timeOptHour==0 & argv[i][0]!=0)
+				if (timeOptHour==0 && argv[i][0]!=0)
 				{
 					cerr <<"\""<< argv[i]<<"\""<<" n'est pas un nombre "<<
 						endl<<"incerer un nombre aprés l'option -t"<< endl;
@@ -115,7 +115,7 @@ bool setOption (int argc, char*  argv[], bool& grapOpt,bool& timeOpt,bool& exclu
 		}
 		else
 		{
-			cerr <<"\""<< option <<"\""<< " n'est pas une option reconu "<< endl<< 
+			cerr <<"\""<< option <<"\""<< " n'est pas une option reconu "<< endl<<
 				"essayer -g,-h,-t"<<endl;
 			return false;
 		}
@@ -124,7 +124,7 @@ bool setOption (int argc, char*  argv[], bool& grapOpt,bool& timeOpt,bool& exclu
 	logFilAdresse = argv[argc-1];
 	if (logFilAdresse.find(".log")== string::npos)
 	{
-		cerr <<"\"" << logFilAdresse <<"\""<< 
+		cerr <<"\"" << logFilAdresse <<"\""<<
 			" n'est pas un fichier .log"<<endl<<
 			" inssérer un fichier .log" << endl;
 		return false;
