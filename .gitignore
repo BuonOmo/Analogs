@@ -7,7 +7,6 @@ Debug/
 .settings/
 Tests.tgz
 doc/REGEX
-exe/EXE
-exe/*o
+*.o
 exe/*~
 src/*~

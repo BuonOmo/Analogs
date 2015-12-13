@@ -65,7 +65,7 @@ friend ostream& operator <<( ostream &flux, const Graph & aGrpah);
 
 
 //-------------------------------------------- Constructeurs - destructeur
-	Graph (  Graph & aGraph );
+	Graph ( const Graph & aGraph );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
