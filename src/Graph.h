@@ -44,11 +44,17 @@ void insertData();
 
 void insertOption (bool aOptVisual,  bool aOptExclude,  bool aOptHour, int aHourInOpt);
 
-void insertDataSources (const Read & aData );
+void insertDataSources (const string & aDataFile );
 
 list<string*> allLinks();
 
 //------------------------------------------------- Surcharge d'opérateurs
+friend ostream& operator <<( ostream &flux, const Graph & aGrpah);
+   // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
 	Graph & operator = (  Graph & aGraph );
     // Mode d'emploi :
     //
@@ -63,7 +69,7 @@ list<string*> allLinks();
     // Contrat :
     //
 
-	Graph (const Read & aData, bool aOptVisual,  bool aOptExclude,  bool aOptHour, int aHourInOpt);
+	Graph (const string & aDataFile, bool aOptVisual,  bool aOptExclude,  bool aOptHour, int aHourInOpt);
     // Mode d'emploi :
     //
     // Contrat :
@@ -99,7 +105,7 @@ private:
 	bool optExclude;
 	bool optHour;
 	int hourInOpt;
-	Read * data;
+	string dataFile;
 
 
 //---------------------------------------------------------- Classes amies

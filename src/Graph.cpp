@@ -11,7 +11,7 @@
 
 ///-------------------------------------------------------- Include système
 using namespace std;
-//#include <iostream>
+#include <iostream>
 //#include <fstream>
 #include "Graph.h"
 
@@ -33,6 +33,10 @@ using namespace std;
 void Graph::insertData()
 // Algorithme :
 {
+#ifdef MAP
+    cout << "Appel a la mehtode Graph::insertData()" << endl;
+#endif
+	Read* data = new Read(dataFile);
 	if (data == NULL)
 	{
 		//cerr<< "No data sources"<< endl;
@@ -47,8 +51,14 @@ void Graph::insertData()
 			string target = toInsert.getTarget();
 			Date date = toInsert.getDate();
 			string extantion = root.substr (root.size()-4,4);
-			bool isAWebPage = (extantion.compare(".css")!=0 && extantion.compare(".png")!=0);
 
+			bool isAWebPage = (extantion.compare(".css")!=0 && extantion.compare(".png")!=0);
+			
+			if (!optVisual)
+			{
+				root = "all"; // ------pour les option t et e il n'est pas néésaire de 
+						//-----connaitre la rassine du hit;
+			}
 			bool isOptionMatch = (!optHour || date.getHour() == hourInOpt) // option heur -> heur conincide avec l'heur mise en option.
 					&&
 					(!optExclude || isAWebPage ); // --------------TODO verifi
@@ -85,7 +95,9 @@ void Graph::insertData()
 			}
 		}
 	}
+	delete data;
 }
+
 void Graph::insertOption(bool aOptVisual,  bool aOptExclude,  bool aOptHour, int aHourInOpt)
 {
 	optVisual = aOptVisual;
@@ -93,10 +105,9 @@ void Graph::insertOption(bool aOptVisual,  bool aOptExclude,  bool aOptHour, int
 	optHour = aOptHour;
 	hourInOpt = aHourInOpt;
 }
-void Graph::insertDataSources(const Read & aData)
+void Graph::insertDataSources(const string & aDataFile)
 {
-	delete data;
-	data= new Read(aData);
+	dataFile = aDataFile;
 }
 
 list<string *> Graph::allLinks()
@@ -118,12 +129,20 @@ list<string *> Graph::allLinks()
 
 
 ///------------------------------------------------- Surcharge d'opérateurs
+ostream& operator <<( ostream &flux, const Graph & aGrpah)
+{
+    flux<< aGrpah.dataFile;
+    return flux;
+}
+
 Graph & Graph::operator = (  Graph & unGraph )
 // Algorithme :
 //
 {
-	delete data;
-	data = new Read(* unGraph.data);
+#ifdef MAP
+    cout << "Appel a la surcharge de = de <Graph>" << endl;
+#endif
+	dataFile = unGraph.dataFile;
 	optVisual = unGraph.optVisual;
 	optExclude = unGraph.optExclude;
 	optHour = unGraph.optHour;
@@ -148,23 +167,26 @@ Graph & Graph::operator = (  Graph & unGraph )
 
 
 ///-------------------------------------------- Constructeurs - destructeur
-Graph::Graph (const Read & aData, bool aOptVisual,  bool aOptExclude,  bool aOptHour, int aHourInOpt)
+Graph::Graph (const string & aDataFile, bool aOptVisual,  bool aOptExclude,  bool aOptHour, int aHourInOpt)
 {
-	data = new Read(aData);
+#ifdef MAP
+    cout << "Appel au constructeur de <Graph>" << endl;
+#endif
+	dataFile = aDataFile;
 	optVisual = aOptVisual;
 	optExclude = aOptExclude;
 	optHour = aOptHour;
 	hourInOpt = aHourInOpt;
+	insertData();
 }
 Graph::Graph ( Graph & unGraph)
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Read>" << endl;
+    cout << "Appel au constructeur de copie de <Graph>" << endl;
 #endif
-	delete data;
-    data = new Read(* unGraph.data);
+	dataFile = unGraph.dataFile;
 	optVisual = unGraph.optVisual;
 	optExclude = unGraph.optExclude;
 	optHour = unGraph.optHour;
@@ -182,9 +204,9 @@ Graph::Graph()
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Graph>" << endl;
+    cout << "Appel au constructeur par défeau de <Graph>" << endl;
 #endif
-	data = NULL;
+	dataFile = "";
 	optVisual = false;
 	optExclude = false;
 	optHour = false;
