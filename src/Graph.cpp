@@ -202,7 +202,7 @@ Graph::Graph (const string & aDataFile, bool aOptVisual,  bool aOptExclude,  boo
 	insertData();
 } //----- Fin de Graph
 
-Graph::Graph ( Graph & unGraph)
+Graph::Graph (const Graph & unGraph)
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Graph>" << endl;
@@ -212,23 +212,19 @@ Graph::Graph ( Graph & unGraph)
 	optExclude = unGraph.optExclude;
 	optHour = unGraph.optHour;
 	hourInOpt = unGraph.hourInOpt;
-    for ( fullGraph::iterator itGraphe = unGraph.graph.begin(); itGraphe !=unGraph.graph.end(); itGraphe++)
+    for ( fullGraph::const_iterator itGraphe = unGraph.graph.begin(); itGraphe !=unGraph.graph.end(); itGraphe++)
     {
     	graph[itGraphe->first] = new shortGraph(  * itGraphe->second );
     }
 } //----- Fin de Graph (constructeur de copie)
 
 
-Graph::Graph()
+Graph::Graph():
+		dataFile(""), optVisual (false), optExclude(false), hourInOpt(0)
 {
 #ifdef MAP
     cout << "Appel au constructeur par défeau de <Graph>" << endl;
 #endif
-	dataFile = "";
-	optVisual = false;
-	optExclude = false;
-	optHour = false;
-	hourInOpt = 0 ;
 } //----- Fin de Graph
 
 
