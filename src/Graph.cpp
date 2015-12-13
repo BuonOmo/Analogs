@@ -107,6 +107,7 @@ void Graph::insertOption(bool aOptVisual,  bool aOptExclude,  bool aOptHour, int
 	optHour = aOptHour;
 	hourInOpt = aHourInOpt;
 }
+
 void Graph::insertDataSources(const string & aDataFile)
 {
 	dataFile = aDataFile;
@@ -161,16 +162,16 @@ ostream& operator <<( ostream &flux, const Graph & aGraph)
     return flux;
 }
 
-Graph & Graph::operator = (  Graph & unGraph )
+Graph & Graph::operator = (  Graph & aGraph )
 {
 #ifdef MAP
     cout << "Appel a la surcharge de = de <Graph>" << endl;
 #endif
-	dataFile = unGraph.dataFile;
-	optVisual = unGraph.optVisual;
-	optExclude = unGraph.optExclude;
-	optHour = unGraph.optHour;
-	hourInOpt = unGraph.hourInOpt;
+	dataFile = aGraph.dataFile;
+	optVisual = aGraph.optVisual;
+	optExclude = aGraph.optExclude;
+	optHour = aGraph.optHour;
+	hourInOpt = aGraph.hourInOpt;
 
 	// ------------------- supertion du graphe existant
     for (fullGraph::iterator itGraphe = graph.begin(); itGraphe !=graph.end(); itGraphe++)
@@ -181,7 +182,7 @@ Graph & Graph::operator = (  Graph & unGraph )
 	graph.erase(graph.begin(),graph.end());
 
 
-    for ( fullGraph::iterator itGraphe = unGraph.graph.begin(); itGraphe !=unGraph.graph.end(); itGraphe++)
+    for ( fullGraph::iterator itGraphe = aGraph.graph.begin(); itGraphe !=aGraph.graph.end(); itGraphe++)
     {
     	graph[itGraphe->first] = new shortGraph(  * itGraphe->second );
     }
@@ -191,30 +192,26 @@ Graph & Graph::operator = (  Graph & unGraph )
 
 
 //--------------------------------------------- Constructeurs - destructeur
-Graph::Graph (const string & aDataFile, bool aOptVisual,  bool aOptExclude,  bool aOptHour, int aHourInOpt)
+Graph::Graph (const string & aDataFile, bool aOptVisual,  bool aOptExclude,  bool aOptHour, int aHourInOpt):
+		dataFile(aDataFile),optVisual(aOptVisual),optExclude(aOptExclude),optHour(aOptHour),hourInOpt(aHourInOpt)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Graph>" << endl;
 #endif
-	dataFile = aDataFile;
-	optVisual = aOptVisual;
-	optExclude = aOptExclude;
-	optHour = aOptHour;
-	hourInOpt = aHourInOpt;
 	insertData();
 } //----- Fin de Graph
 
-Graph::Graph (const Graph & unGraph)
+Graph::Graph (const Graph & aGraph)
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Graph>" << endl;
 #endif
-	dataFile = unGraph.dataFile;
-	optVisual = unGraph.optVisual;
-	optExclude = unGraph.optExclude;
-	optHour = unGraph.optHour;
-	hourInOpt = unGraph.hourInOpt;
-    for ( fullGraph::const_iterator itGraphe = unGraph.graph.begin(); itGraphe !=unGraph.graph.end(); itGraphe++)
+	dataFile = aGraph.dataFile;
+	optVisual = aGraph.optVisual;
+	optExclude = aGraph.optExclude;
+	optHour = aGraph.optHour;
+	hourInOpt = aGraph.hourInOpt;
+    for ( fullGraph::const_iterator itGraphe = aGraph.graph.begin(); itGraphe !=aGraph.graph.end(); itGraphe++)
     {
     	graph[itGraphe->first] = new shortGraph(  * itGraphe->second );
     }

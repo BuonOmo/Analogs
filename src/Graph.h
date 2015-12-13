@@ -103,11 +103,11 @@ protected:
 private:
 //------------------------------------------------------- Attributs privés
 	map<string,map<string,int>* > graph ;
+	string dataFile;
 	bool optVisual;
 	bool optExclude;
 	bool optHour;
 	int hourInOpt;
-	string dataFile;
 
 
 //---------------------------------------------------------- Classes amies
