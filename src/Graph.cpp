@@ -112,11 +112,11 @@ void Graph::insertDataSources(const string & aDataFile)
 
 list<string *> Graph::allLinks()
 {
-	list<string*> allLink;
+	list<string *> allLink;
     for (fullGraph::iterator itGraphe = graph.begin(); itGraphe !=graph.end(); itGraphe++)
     	for (shortGraph::iterator itLinkGraphe = itGraphe->second->begin(); itLinkGraphe != itGraphe->second->end(); itLinkGraphe ++)
     	{
-    		string* aLink = new string[3];
+    		string aLink[3];
     		aLink[2] = itLinkGraphe->second;
     		aLink[0] = itLinkGraphe->first;
     		aLink[1] = itGraphe->first;

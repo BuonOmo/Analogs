@@ -27,7 +27,7 @@ bool Read::hasNextLog ( )
 #ifdef MAP
     cout << "Appel à la methode Read::hasNextLog" << endl;
 #endif
-
+    file.open(fileName.c_str(), ios::in);
 	if ( !file.eof() && file.peek() != EOF/*char_traits<wchar_t>::eof()*/ )
 	{
 #ifdef MAP
@@ -94,6 +94,7 @@ Log Read::readNextLog ( )
                 newDate[5],
                 month);
     return *(new Log(date, root, target));
+    file.close();
 } //----- Fin de readNextLog
 
 ///------------------------------------------------- Surcharge d'opérateurs
@@ -119,7 +120,7 @@ Read::Read ( const Read & unRead )
 } //----- Fin de Read (constructeur de copie)
 
 
-Read::Read ( const string & aFile )
+Read::Read ( const string & aFile ) : fileName(aFile)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Read>" << endl;
@@ -137,7 +138,7 @@ Read::Read ( const string & aFile )
     {
 		cerr << "Impossible d'ouvrir le fichier " << aFile << '.' <<endl;
 	}
-
+    file.close();
 } //----- Fin de Read
 
 
