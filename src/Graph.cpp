@@ -50,10 +50,12 @@ void Graph::insertData()
 			string root = toInsert.getRoot();
 			string target = toInsert.getTarget();
 			Date date = toInsert.getDate();
-			string extantion = root.substr (root.size()-4,4);
-
-			bool isAWebPage = (extantion.compare(".css")!=0 && extantion.compare(".png")!=0);
-
+            bool isAWebPage = true;
+            if (root.size() >= 4)
+            {
+    			string extantion = root.substr (root.size()-4,4);
+    			isAWebPage = (extantion.compare(".css")!=0 && extantion.compare(".png")!=0);
+            }
 			if (!optVisual)
 			{
 				root = "all"; // ------pour les option t et e il n'est pas néésaire de
@@ -127,7 +129,7 @@ list<string *> Graph::allLinks()
 
 void Graph::print(ostream &flux) const
 {
-	for (int i(0); i< 10 ;i++)
+	for (int i(0); i < 10 ;i++)
 	{
 		int max =0;
 		string targetMax;

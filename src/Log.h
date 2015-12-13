@@ -52,10 +52,14 @@ public:
 
     Log ( const Date   & aDate   = *(new Date ()),
 		  const string & aRoot   = "root",
-		  const string & aTarget = "target"
+		  const string & aTarget = "target",
+          bool removeLocalAddress = true
 		  );
     // Mode d'emploi :
     // Entrer les valeurs des parametres.
+    // removeLocalAddress permet d’enlever des racines le préfixe
+    // http://intranet-if.insa-lyon.fr
+    //
     // Contrat :
     // -
 

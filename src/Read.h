@@ -37,7 +37,7 @@ public:
     // Contrat :
     // -
 
-    Log readNextLog ( );
+    Log & readNextLog ( );
     // Mode d'emploi :
     // Lis la ligne suivant et renvoi un objet Log correspondant.
     //

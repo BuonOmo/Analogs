@@ -69,13 +69,33 @@ Log::Log ( const Log & aLog )
 
 Log::Log ( const Date & aDate,
 		   const string & aRoot,
-		   const string & aTarget ) :
+		   const string & aTarget,
+	       bool removeLocalAddress) :
 	date (aDate), root (aRoot), target (aTarget)
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Log>" << endl;
+    cout << "Appel au constructeur de <Log> avec les parametres :" << endl;
+	cout << "\t" << aDate << "\n\t" << aRoot << "\n\t" << aTarget << "\n\t";
+	cout << removeLocalAddress << endl;
 #endif
-
+	if (aTarget == "-")
+	{
+		target = "";
+	}
+	if (removeLocalAddress)
+	{
+		string localAddress = "http://intranet-if.insa-lyon.fr";
+		int position = root.find(localAddress);
+		cout << localAddress.size() << " + " << position << endl;
+		if (position != string::npos)
+		{
+			root =
+			  aRoot.substr(position + localAddress.size(), aRoot.size()-1);
+		}
+	}
+#ifdef MAP
+	cout << *this << endl;
+#endif
 } //----- Fin de Log
 
 Log::~Log ( )
