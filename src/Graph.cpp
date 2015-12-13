@@ -125,13 +125,37 @@ list<string *> Graph::allLinks()
     return allLink;
 }
 
+void Graph::print(ostream &flux)
+{
+	for (int i(0); i< 10 ;i++)
+	{
+		int max =0;
+		string targetMax;
+		for (map<string,map<string,int>*>::iterator itGraphe = graph.begin(); itGraphe !=graph.end(); itGraphe++)
+		{
+			int curNbHit =itGraphe->second->find ("all")->second;
+			if (max < curNbHit)
+			{
+				max =curNbHit;
+				targetMax =itGraphe->first;
+				itGraphe->second->find ("all")->second= 0;
+			}
+
+		}
+		if (max >0)
+		{
+			flux << targetMax << " " << max << endl ;
+		}
+	}
+insertData;
+}
 
 
 
 ///------------------------------------------------- Surcharge d'opérateurs
 ostream& operator <<( ostream &flux, const Graph & aGrpah)
 {
-    flux<< aGrpah.dataFile;
+    aGrpah.print(flux);
     return flux;
 }
 
