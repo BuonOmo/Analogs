@@ -8,5 +8,6 @@ Debug/
 Tests.tgz
 doc/REGEX
 *.o
+exe/EXE
 exe/*~
 src/*~
