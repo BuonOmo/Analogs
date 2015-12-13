@@ -82,13 +82,13 @@ Date::Date ( 	int aHour,
                 int aYear,
                 const string & aMonth
             ) :
-            hour ( aHour ),
-            minute ( aMinute ),
-            second ( aSecond ),
+            hour     ( aHour ),
+            minute   ( aMinute ),
+            second   ( aSecond ),
             timeZone ( aTimeZone ),
-            day ( aDay ),
-            year ( aYear ),
-            month ( aMonth )
+            day      ( aDay ),
+            year     ( aYear ),
+            month    ( aMonth )
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Date>" << endl;

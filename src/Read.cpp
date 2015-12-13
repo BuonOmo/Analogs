@@ -13,6 +13,7 @@
 using namespace std;
 #include <iostream>
 #include <string>
+#include <sstream>
 
 ///------------------------------------------------------ Include personnel
 #include "Read.h"
@@ -27,7 +28,7 @@ bool Read::hasNextLog ( )
     cout << "Appel à la methode Read::hasNextLog" << endl;
 #endif
 
-	if ( !file.eof() && file.peek() != char_traits<wchar_t>::eof() )
+	if ( !file.eof() && file.peek() != EOF/*char_traits<wchar_t>::eof()*/ )
 	{
 #ifdef MAP
 	cout << "Read::hasNextLog = true" << endl;
@@ -68,22 +69,22 @@ Log Read::readNextLog ( )
     line.replace ( line.find ( ':' ) , 1, 1, ' ' );
     line.replace ( line.find ( ':' ) , 1, 1, ' ' );
     line.replace ( line.find ( ':' ) , 1, 1, ' ' );
-    //istringstream streamDate ( line );
-    /*streamDate >>*/ newDate[4] = 0;
-    /*streamDate >>*/ month = "0";
-    /*streamDate >>*/ newDate[5] = 0;
-    /*streamDate >>*/ newDate[0] = 0;
-    /*streamDate >>*/ newDate[1] = 0;
-    /*streamDate >>*/ newDate[2] = 0;
-    if (/*streamDate.get() == 32*/true) // 32 correspond à +
+    istringstream streamDate ( line );
+    streamDate >> newDate[4];
+    streamDate >> month;
+    streamDate >> newDate[5];
+    streamDate >> newDate[0];
+    streamDate >> newDate[1];
+    streamDate >> newDate[2];
+    if (streamDate.get() == 32) // 32 correspond à +
     {
-        /*streamDate >>*/ newDate[3] = 0;
+        streamDate >> newDate[3];
     }
     else
     {
-        /*streamDate >>*/ newDate[3] = 0;
+        streamDate >> newDate[3];
         newDate[3] = - newDate[3];
-    };
+    }
     newDate[3] /= 100;
     Date date ( newDate[0],
                 newDate[1],
