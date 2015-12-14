@@ -52,6 +52,10 @@ Log & Read::readNextLog ( )
     getline(*file, line);
     //----- recherche de la racine
     string rootFinder ( "\"GET " );
+    if (line.find (rootFinder) == string::npos)
+    {
+        rootFinder = "\"POST ";
+    }
     int rootBegin  ( line.find ( rootFinder ) + rootFinder.size ( ) );
 #ifdef MAP
 	cout << "\trootBegin : " << rootBegin << endl;
