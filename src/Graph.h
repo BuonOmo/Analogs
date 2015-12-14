@@ -46,7 +46,7 @@ void insertOption (bool aOptVisual,  bool aOptExclude,  bool aOptHour, int aHour
 
 void insertDataSources (const string & aDataFile );
 
-list<string *> allLinks();
+list<string > allLinks();
 
 void print(ostream &flux) const;
 

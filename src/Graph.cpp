@@ -114,23 +114,27 @@ void Graph::insertDataSources(const string & aDataFile)
 	dataFile = aDataFile;
 }
 
-list<string *> Graph::allLinks()
+list<string> Graph::allLinks()
 {
-    list<string *> allLink;
+#ifdef MAP
+    cout << "Appel a la mehtode Graph::allLinks()" << endl;
+#endif
+    list<string > allLink;
     for (fullGraph::iterator itGraphe = graph.begin(); itGraphe !=graph.end(); itGraphe++)
     {
     	for (shortGraph::iterator itLinkGraphe = itGraphe->second->begin(); itLinkGraphe != itGraphe->second->end(); itLinkGraphe ++)
     	{
-    		string aLink[3];
-    		aLink[0] = itLinkGraphe->first;
-    		aLink[1] = itGraphe->first;
+    		string root(itLinkGraphe->first);
+    		string target( itGraphe->first);
 
     		int a = (itLinkGraphe->second);
     		stringstream ss;
     		ss << a;
+    		string ponderation = ss.str();
 
-    		aLink[2] = ss.str();
-    		allLink.push_back(aLink);
+    		allLink.push_back(root);
+    		allLink.push_back(target);
+    		allLink.push_back(ponderation);
     	}
     }
     return allLink;

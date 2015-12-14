@@ -15,6 +15,7 @@ using namespace std;
 #include <cstdlib>
 #include "Graph.h"
 #include "GraphVizConverter.h"
+#include <list>
 
 
 bool setOption (int argc, char* argv[],bool& grapOpt,bool& timeOpt,bool& excludOpt, string& graphOptFile,int& timeOptHour, string& logFilAdresse);
@@ -38,7 +39,7 @@ int main(int argc, char* argv[])
 	if (graphOpt)
 	{
 		GraphVizConverter converter;
-		converter.convert(graph.allLinks(),"",graphOptFile);
+		//converter.convert(graph.allLinks(),"",graphOptFile);
 
 	}
 	else
