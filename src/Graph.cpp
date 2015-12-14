@@ -12,8 +12,8 @@
 //--------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-//#include <fstream>
 #include "Graph.h"
+#include <sstream>
 
 
 //------------------------------------------------------- Include personnel
@@ -124,9 +124,10 @@ list<string *> Graph::allLinks()
     		string aLink[3];
     		aLink[0] = itLinkGraphe->first;
     		aLink[1] = itGraphe->first;
-    		aLink[2] = to_string(itLinkGraphe->second);
-            cout << itLinkGraphe->second<< endl;
-            cout << "___" << aLink[2]<< endl;
+    		int a = (itLinkGraphe->second);
+    		stringstream ss;
+    		ss << a;
+    		aLink[2] = ss.str();
     		allLink.push_back(aLink);
     	}
     }
