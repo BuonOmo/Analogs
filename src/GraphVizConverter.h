@@ -86,7 +86,7 @@ public:
 						const string & aColorLink  = "lightblue",
 						const string & aColorNode  = "lightblue",
 						const string & aShapeNode  = "note",
-						const string & aShapeTail  = ""
+						const string & aShapeTail  = "normal"
 						);
 	// Mode d'emploi :
     // Entrer les parametres souhaités.

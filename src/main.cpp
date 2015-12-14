@@ -38,6 +38,7 @@ int main(int argc, char* argv[])
 	if (graphOpt)
 	{
 		GraphVizConverter converter;
+		cout << graphOptFile << endl;
 		converter.convert(graph.allLinks(),"",graphOptFile);
 
 	}

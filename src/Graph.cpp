@@ -15,6 +15,7 @@ using namespace std;
 //#include <fstream>
 #include "Graph.h"
 
+
 //------------------------------------------------------- Include personnel
 
 
@@ -40,7 +41,7 @@ void Graph::insertData()
 	if (data == NULL)
 	{
 		//cerr<< "No data sources"<< endl;
-		return ; 
+		return ;
 	}
 
 	graph.erase( graph.begin(),graph.end());
@@ -96,7 +97,7 @@ void Graph::insertData()
 				}
 			}
 		}
-	}//fin du while 
+	}//fin du while
 	delete data;
 }
 
@@ -121,9 +122,11 @@ list<string *> Graph::allLinks()
     	for (shortGraph::iterator itLinkGraphe = itGraphe->second->begin(); itLinkGraphe != itGraphe->second->end(); itLinkGraphe ++)
     	{
     		string aLink[3];
-    		aLink[2] = itLinkGraphe->second;
     		aLink[0] = itLinkGraphe->first;
     		aLink[1] = itGraphe->first;
+    		aLink[2] = to_string(itLinkGraphe->second);
+            cout << itLinkGraphe->second<< endl;
+            cout << "___" << aLink[2]<< endl;
     		allLink.push_back(aLink);
     	}
     }
