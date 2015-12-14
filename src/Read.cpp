@@ -138,7 +138,7 @@ Log & Read::readNextLog ( )
         gtm = - gtm;
     }
     gtm /= 100;
-   #ifdef MAP
+#ifdef MAP
 	cout << "\tgtm : " << gtm << endl;
 #endif
     Date date ( hour,

@@ -75,6 +75,9 @@ void GraphVizConverter::convert (list<string*>  graph,
 		// Création des liens
 		for (list<string*>::const_iterator it = graph.begin(); it != graph.end(); ++it)
 		{
+			file << 1 << endl;
+			file << (*it)[0] << endl;
+			file << 2 << endl;
 			file << '"' << (*it)[0] << '"';
 			file << " -> ";
 			file << '"' << (*it)[1] << '"';

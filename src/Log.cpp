@@ -86,7 +86,6 @@ Log::Log ( const Date & aDate,
 	{
 		string localAddress = "http://intranet-if.insa-lyon.fr";
 		int position = root.find(localAddress);
-		cout << localAddress.size() << " + " << position << endl;
 		if (position != string::npos)
 		{
 			root =
@@ -94,7 +93,7 @@ Log::Log ( const Date & aDate,
 		}
 	}
 #ifdef MAP
-	cout << *this << endl;
+	cout << "\tretour : " << *this << endl;
 #endif
 } //----- Fin de Log
 
