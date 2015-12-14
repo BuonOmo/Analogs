@@ -55,7 +55,8 @@ void Graph::insertData()
 		if (root.size() >= 4)
 		{
     			string extantion = root.substr (root.size()-4,4);
-    			isAWebPage = (extantion.compare(".css")!=0 && extantion.compare(".png")!=0);
+    			string petitExtantion =root.substr (root.size()-3,3);
+    			isAWebPage = (extantion.compare(".css")!=0 && extantion.compare(".png")!=0 && petitExtantion.compare(".js")!=0);
 		}
 		if (!optVisual)
 		{

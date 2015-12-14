@@ -41,14 +41,38 @@ public:
 //----------------------------------------------------- Méthodes publiques
 
 void insertData();
+	// Mode d'emploi :
+	//incert les dones du fichier cible de dataFile dans la map.
+	// Contrat :
+	//
+
 
 void insertOption (bool aOptVisual,  bool aOptExclude,  bool aOptHour, int aHourInOpt);
+	// Mode d'emploi :
+	// icertion des options
+	// Contrat :
+	//
 
 void insertDataSources (const string & aDataFile );
+	// Mode d'emploi :
+	// icertion des incertion du cible de fichier.
+	// Contrat :
+	//Le fichier ciblé par aDataFile doit être un fichier log.
 
 list<string > allLinks();
+	// Mode d'emploi :
+	// revoie une list string remprésante l'ensemble des lien entre les pages
+	// la permière string coorespond a la page rassine
+	// la 2ème coorespond a la page cible
+	// et la 3ème au nombre de hite
+	// Contrat :
+	//
 
 void print(ostream &flux) const;
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
 
 //------------------------------------------------- Surcharge d'opérateurs
 friend ostream& operator <<( ostream &flux, const Graph & aGrpah);
@@ -73,9 +97,9 @@ friend ostream& operator <<( ostream &flux, const Graph & aGrpah);
 
 	Graph (const string & aDataFile, bool aOptVisual,  bool aOptExclude,  bool aOptHour, int aHourInOpt);
     // Mode d'emploi :
-    //inscrti les option donné en paramétre incert
+    //inscrti les option donné en paramétre incert les donnés de du fichier (addrésse aDataFile)
     // Contrat :
-    //
+    //Le fichier ciblé par aDataFile doit être un fichier log.
 
 	Graph (  );
     // Mode d'emploi :

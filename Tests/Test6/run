@@ -1,1 +1,1 @@
-cat fichier.txt >sortie.txt && echo "essai" >sortie2.txt
+../../executable/analog -g graph.dot -i 192.168.0.14 -e -t 11 ./test6.log

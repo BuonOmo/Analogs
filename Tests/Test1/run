@@ -1,1 +1,1 @@
-cat fichier.txt >sortie.txt
+../../exe/analog ./test1.log

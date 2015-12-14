@@ -1,0 +1,17 @@
+digraph {
+	"/";
+	"/SiteWebIF/Intranet-etudiant.php";
+	"/SiteWebIF/Intranet-etudiant.php?ticket=ST-19003-iWUXxygHfEPoGzBotWq0-dsi-vm04";
+	"/cache/caa37016007b56628f231acfd3d91188";
+	"/temps/";
+	"/temps/3IF37.html";
+	"/temps/index.html";
+	"/url?sa=D&q=http://intranet-if.insa-lyon.fr/&usg=AFQjCNHV-gCqPo-huDqFpvtCum8KGpr5JQ" -> "/" [label="1"];
+	"-" -> "/SiteWebIF/Intranet-etudiant.php" [label="1"];
+	"http://if.insa-lyon.fr/vie-etudiante/laedi" -> "/SiteWebIF/Intranet-etudiant.php" [label="1"];
+	"-" -> "/SiteWebIF/Intranet-etudiant.php?ticket=ST-19003-iWUXxygHfEPoGzBotWq0-dsi-vm04" [label="1"];
+	"/" -> "/cache/caa37016007b56628f231acfd3d91188" [label="1"];
+	"/SiteWebIF/Intranet-etudiant.php" -> "/temps/" [label="1"];
+	"/temps/" -> "/temps/3IF37.html" [label="1"];
+	"/temps/3IF37.html" -> "/temps/index.html" [label="1"];
+}
