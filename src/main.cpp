@@ -17,7 +17,7 @@ using namespace std;
 #include "GraphVizConverter.h"
 
 
-bool setOption (int argc, char* argv[],bool& grapOpt,bool& timeOpt,bool& excludOpt, string& grapOptFile,int& timeOptHour, string& logFilAdresse);
+bool setOption (int argc, char* argv[],bool& grapOpt,bool& timeOpt,bool& excludOpt, string& graphOptFile,int& timeOptHour, string& logFilAdresse);
 
 int main(int argc, char* argv[])
 {
@@ -27,22 +27,21 @@ int main(int argc, char* argv[])
 	bool graphOpt= false;
 	bool timeOpt = false;
 	bool excludOpt = false;
-	string grapOptFile;
+	string graphOptFile;
 	int timeOptHour;
 	string logFilAdresse;
-	if ( !setOption (argc, argv, graphOpt,timeOpt, excludOpt, grapOptFile,timeOptHour, logFilAdresse))
+	if ( !setOption (argc, argv, graphOpt,timeOpt, excludOpt, graphOptFile,timeOptHour, logFilAdresse))
 	{
-	return 0;
+	return 1;
 	}
-	cout << logFilAdresse << endl;
 	Graph graph(logFilAdresse, graphOpt, excludOpt, timeOpt, timeOptHour);
 	if (graphOpt)
 	{
 		GraphVizConverter converter;
-		converter.convert(graph.allLinks(),"",logFilAdresse);
+		converter.convert(graph.allLinks(),"",graphOptFile);
 
 	}
-	else 
+	else
 	{
 		cout << graph << endl;
 	}
@@ -56,7 +55,7 @@ int main(int argc, char* argv[])
 	affiche analyse
 	 */
 }
-bool setOption (int argc, char*  argv[], bool& grapOpt,bool& timeOpt,bool& excludOpt, string& grapOptFile,int& timeOptHour, string& logFilAdresse)
+bool setOption (int argc, char*  argv[], bool& grapOpt,bool& timeOpt,bool& excludOpt, string& graphOptFile,int& timeOptHour, string& logFilAdresse)
 {
 	for (int i(1) ; i < argc-1 ; i++)
 	{
@@ -73,17 +72,19 @@ bool setOption (int argc, char*  argv[], bool& grapOpt,bool& timeOpt,bool& exclu
 			{
 				grapOpt = true;
 				i++;
-				grapOptFile = argv[i];
-				if (grapOptFile.compare("-e")==0
-					|| grapOptFile.compare("-h")==0
-					|| grapOptFile.find(".log") != string::npos)
-
-					{
-						cerr <<"\"" << grapOptFile <<"\""<<
-						" n'est pas une destination"<<endl<<
-						" inssérer une destination aprais -g" << endl;
-
-					}
+				graphOptFile = argv[i];
+				if (graphOptFile.compare("-e")==0
+					|| graphOptFile.compare("-h")==0
+					|| graphOptFile.find(".dot") == string::npos)
+				{
+					cerr << "\"" << graphOptFile <<"\"";
+					cerr << " n'est pas une destination." << endl;
+					cerr << " inserez une destination après -g" << endl;
+					return false;
+				}
+				string grOF = graphOptFile;
+				graphOptFile =
+							grOF.substr (grOF.rfind('.'), grOF.size() - 1);
 			}
 
 		}
