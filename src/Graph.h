@@ -73,7 +73,7 @@ friend ostream& operator <<( ostream &flux, const Graph & aGrpah);
 
 	Graph (const string & aDataFile, bool aOptVisual,  bool aOptExclude,  bool aOptHour, int aHourInOpt);
     // Mode d'emploi :
-    //
+    //inscrti les option donné en paramétre incert
     // Contrat :
     //
 

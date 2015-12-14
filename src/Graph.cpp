@@ -124,18 +124,20 @@ list<string *> Graph::allLinks()
     		string aLink[3];
     		aLink[0] = itLinkGraphe->first;
     		aLink[1] = itGraphe->first;
+
     		int a = (itLinkGraphe->second);
     		stringstream ss;
     		ss << a;
+
     		aLink[2] = ss.str();
     		allLink.push_back(aLink);
     	}
     }
     return allLink;
 }
-
 void Graph::print(ostream &flux) const
 {
+	string toAffiche[10];
 	for (int i(0); i < 10 ;i++)
 	{
 		int max =0;
@@ -145,15 +147,23 @@ void Graph::print(ostream &flux) const
 			int curNbHit =itGraphe->second->find ("all")->second;
 			if (max < curNbHit)
 			{
-				max =curNbHit;
-				targetMax =itGraphe->first;
-				itGraphe->second->find ("all")->second= 0;
+				bool strIsIn= false;
+				for (int j(0); j<i ; j++)
+				{
+					strIsIn = (strIsIn || toAffiche[j].compare(itGraphe->first)==0);
+				}
+				if (!strIsIn)
+				{
+					max =curNbHit;
+					targetMax =itGraphe->first;
+					toAffiche[i]=targetMax;
+				}
 			}
 
 		}
 		if (max >0)
 		{
-			flux << targetMax << " " << max << endl ;
+			flux << targetMax << " (" << max << " hits)" <<endl ;
 		}
 	}
 //insertData;
