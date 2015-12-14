@@ -61,7 +61,7 @@ void Graph::insertData()
 			root = "all"; // ------pour les option t et e il n'est pas néésaire de
 					//-----connaitre la rassine du hit;
 		}
-		bool tagetExist = !target.compare("")==0
+		bool tagetExist = !target.compare("")==0;
 		bool isOptionMatch = (!optHour || date.getHour() == hourInOpt) // option heur -> heur conincide avec l'heur mise en option.
 				&&
 				(!optExclude || isAWebPage ); // --------------TODO verifi
