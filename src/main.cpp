@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 	if (graphOpt)
 	{
 		GraphVizConverter converter;
-		//converter.convert(graph.allLinks(),"",graphOptFile);
+		converter.convert(graph.allLinks(),"",graphOptFile);
 
 	}
 	else
@@ -110,7 +110,7 @@ bool setOption (int argc, char*  argv[], bool& grapOpt,bool& timeOpt,bool& exclu
 				timeOpt = true;
 				i++;
 				timeOptHour = atoi(argv[i]);
-				if (timeOptHour==0 && argv[i][0]!=0)
+				if (timeOptHour==0 && argv[i][0]!= 48)
 				{
 					cerr <<"\""<< argv[i]<<"\""<<" n'est pas un nombre "<<
 						endl<<"incerer un nombre aprés l'option -t"<< endl;
