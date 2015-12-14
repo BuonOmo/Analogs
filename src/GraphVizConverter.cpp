@@ -48,7 +48,7 @@ void GraphVizConverter::modifyParameter ( int param, const string & value )
 	}
 } //----- Fin de modifyParameters
 
-void GraphVizConverter::convert (const list<string*>  & graph,
+void GraphVizConverter::convert (const list<string> & graph,
 								 const string & nameBase,
 								 const string & path) const
 {
@@ -73,15 +73,13 @@ void GraphVizConverter::convert (const list<string*>  & graph,
 		file << ", arrowtail=" << shapeTail;
 		file << "];"           << endl;
 		// Création des liens
-		for (list<string*>::const_iterator it = graph.begin(); it != graph.end(); ++it)
+		for (list<string>::const_iterator iter = graph.begin(); iter != graph.end(); ++iter)
 		{
-			file << (*it)[1] << 1 << endl;
-			file << (*it)[2] << 2 << endl;
-			file << '"' << (*it)[0] << '"';
+			file << '"' << *(iter) << '"';
 			file << " -> ";
-			file << '"' << (*it)[1] << '"';
+			file << '"' << *(++iter) << '"';
 			file << " [label=" << '"';
-			file << (*it)[2] << "\"];";
+			file << *(++iter) << "\"];";
 			file << endl;
 		}
 		file << "}" << endl;
