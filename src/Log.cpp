@@ -85,11 +85,11 @@ Log::Log ( const Date & aDate,
 	if (removeLocalAddress)
 	{
 		string localAddress = "http://intranet-if.insa-lyon.fr";
-		int position = root.find(localAddress);
+		int position = target.find(localAddress);
 		if (position != string::npos)
 		{
-			root =
-			  aRoot.substr(position + localAddress.size(), aRoot.size()-1);
+			target =
+			  aTarget.substr(localAddress.size(), aTarget.size()-1);
 		}
 	}
 #ifdef MAP

@@ -1,0 +1,12 @@
+Role : affiche la liste des 10 documents les plus consultés d’un fichier log
+
+Utilisation: analog [-g nomfichier.dot] [-e] [-t heure] nomfichier.log
+
+Options:
+  -g nomfichier.dot   Permet de produire un fichier au format GraphViz pour
+                      l’exporter plus tard en image png
+
+  -e                  Enlève de la selection les fichiers .png et .css
+
+  -t heure            n’affiche que les logs fait à l’heure demandé. heure
+                      est un entier
