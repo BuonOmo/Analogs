@@ -40,63 +40,63 @@ void Graph::insertData()
 	if (data == NULL)
 	{
 		//cerr<< "No data sources"<< endl;
+		return ; 
 	}
-	else
+
+	graph.erase( graph.begin(),graph.end());
+	while (data->hasNextLog ( ))
 	{
-		graph.erase( graph.begin(),graph.end());
-		while (data->hasNextLog ( ))
+		Log toInsert (data->readNextLog ( ));
+		string root = toInsert.getRoot();
+		string target = toInsert.getTarget();
+		Date date = toInsert.getDate();
+		bool isAWebPage = true;
+		if (root.size() >= 4)
 		{
-			Log toInsert (data->readNextLog ( ));
-			string root = toInsert.getRoot();
-			string target = toInsert.getTarget();
-			Date date = toInsert.getDate();
-            bool isAWebPage = true;
-            if (root.size() >= 4)
-            {
     			string extantion = root.substr (root.size()-4,4);
     			isAWebPage = (extantion.compare(".css")!=0 && extantion.compare(".png")!=0);
-            }
-			if (!optVisual)
+		}
+		if (!optVisual)
+		{
+			root = "all"; // ------pour les option t et e il n'est pas néésaire de
+					//-----connaitre la rassine du hit;
+		}
+		bool tagetExist = !target.compare("")==0
+		bool isOptionMatch = (!optHour || date.getHour() == hourInOpt) // option heur -> heur conincide avec l'heur mise en option.
+				&&
+				(!optExclude || isAWebPage ); // --------------TODO verifi
+
+
+		if (isOptionMatch && tagetExist)//--------------------TODO fonctione des options
+		{
+
+
+			fullGraph::iterator it = graph.find(target);
+			if (it == graph.end())
 			{
-				root = "all"; // ------pour les option t et e il n'est pas néésaire de
-						//-----connaitre la rassine du hit;
+				shortGraph *pGraphRootPart = new shortGraph;
+				(*pGraphRootPart) [root]=1;
+				graph[target]=pGraphRootPart;
+				//cout<<"Graph :: insrte Data création d'une target et d'une root"<< endl;
 			}
-			bool isOptionMatch = (!optHour || date.getHour() == hourInOpt) // option heur -> heur conincide avec l'heur mise en option.
-					&&
-					(!optExclude || isAWebPage ); // --------------TODO verifi
-
-
-			if (isOptionMatch)//--------------------TODO fonctione des options
+			else
 			{
-
-
-				fullGraph::iterator it = graph.find(target);
-				if (it == graph.end())
+				shortGraph *pGraphRootPart;
+				pGraphRootPart = it->second ;
+				shortGraph::iterator sMIt = pGraphRootPart->find(root);
+				if (sMIt == pGraphRootPart->end())
 				{
-					shortGraph *pGraphRootPart = new shortGraph;
-					(*pGraphRootPart) [root]=1;
-					graph[target]=pGraphRootPart;
-					//cout<<"Graph :: insrte Data création d'une target et d'une root"<< endl;
+					(*pGraphRootPart)[root]=1;
+					//cout << "Graph :: insrte Data  création  d'une root" << endl;
 				}
 				else
 				{
-					shortGraph *pGraphRootPart;
-					pGraphRootPart = it->second ;
-					shortGraph::iterator sMIt = pGraphRootPart->find(root);
-					if (sMIt == pGraphRootPart->end())
-					{
-						(*pGraphRootPart)[root]=1;
-						//cout << "Graph :: insrte Data  création  d'une root" << endl;
-					}
-					else
-					{
-						sMIt->second++;
-						//cout << "Graph :: insrte Data  root et taget existe : incrémentation"<< endl;
-					}
+					sMIt->second++;
+					//cout << "Graph :: insrte Data  root et taget existe : incrémentation"<< endl;
 				}
 			}
 		}
-	}
+	}//fin du while 
 	delete data;
 }
 
