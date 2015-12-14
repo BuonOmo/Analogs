@@ -48,23 +48,23 @@ void GraphVizConverter::modifyParameter ( int param, const string & value )
 	}
 } //----- Fin de modifyParameters
 
-void GraphVizConverter::convert (list<string*>  graph,
+void GraphVizConverter::convert (const list<string*>  & graph,
 								 const string & nameBase,
 								 const string & path) const
 {
+#ifdef MAP
+	cout << "Appel à la méthode <convert> de GraphVizConverter" << endl;
+#endif
 	// création ou écrasement du fichier dot
-	string toOpen = path + nameBase;
-	ofstream file (toOpen.c_str(), ios::out | ios::trunc);
-
+	string dotFile = path + nameBase + ".dot";
+	ofstream file (dotFile.c_str(), ios::out | ios::trunc);
 	if(file){
-
 		file << "digraph AnalysisResult {" << endl;
 		// Ajout du titre
 		file << "label = \"" << title;
 		file << "\";"        << endl;
 		// Format des nœuds
 		file << "node [color=" << colorNode;
-		file << ", style="     << "";
 		file << ", shape="     << shapeNode;
 		file << "];"           << endl;
 		// Format des liasions
@@ -75,7 +75,6 @@ void GraphVizConverter::convert (list<string*>  graph,
 		// Création des liens
 		for (list<string*>::const_iterator it = graph.begin(); it != graph.end(); ++it)
 		{
-			file << (*it)[0] << 0 << endl;
 			file << (*it)[1] << 1 << endl;
 			file << (*it)[2] << 2 << endl;
 			file << '"' << (*it)[0] << '"';
@@ -89,12 +88,12 @@ void GraphVizConverter::convert (list<string*>  graph,
 		file.close();
 		if (printPNG)
 		{
-			string instruction = "dot -Tpng -o "+toOpen+".png"+ toOpen+".dot";
+			string instruction =
+							"dot -Tpng -o "+path+nameBase+".png "+ dotFile;
 			system(instruction.c_str());
-			instruction = "eog "+toOpen+".png";
+			instruction = "eog "+path+nameBase+".png";
 			system(instruction.c_str());
 		}
-		//delete(*it);
 	}
 	else
 	{

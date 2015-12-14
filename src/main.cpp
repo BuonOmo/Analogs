@@ -37,9 +37,7 @@ int main(int argc, char* argv[])
 	Graph graph(logFilAdresse, graphOpt, excludOpt, timeOpt, timeOptHour);
 	if (graphOpt)
 	{
-		cout << graphOptFile << "coucou" <<endl; 
 		GraphVizConverter converter;
-		cout << graphOptFile << endl;
 		converter.convert(graph.allLinks(),"",graphOptFile);
 
 	}

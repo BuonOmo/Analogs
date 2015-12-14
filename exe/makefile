@@ -3,7 +3,7 @@ EDL      = g++
 RM       = rm
 RMFLAGS  = -f
 OUTPUT   = -o
-CPPFLAGS = -Wall #-DMAP
+CPPFLAGS = -Wall -DMAP
 INTPATH  = ../src/
 INT      = Log.h Read.h GraphVizConverter.h Graph.h Date.h
 INTPATH  =../src/
@@ -16,7 +16,7 @@ INCPATH  = #-I
 LIBS     = #-lm
 
 ECHO  = @echo
-EXE   = EXE
+EXE   = analog
 CLEAN = Clean
 #.SILENT:
 .PHONY: $(CLEAN)
