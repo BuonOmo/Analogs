@@ -4,7 +4,6 @@ RM       = rm
 RMFLAGS  = -f
 OUTPUT   = -o
 CPPFLAGS = -Wall # -DMAP
-INTPATH  = ../src/
 INT      = Log.h Read.h GraphVizConverter.h Graph.h Date.h
 INTPATH  =../src/
 REAL     = $(REALPATH)$(INT:.h=.cpp)
