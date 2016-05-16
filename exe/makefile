@@ -34,11 +34,6 @@ GraphVizConverter.o : $(INTPATH)GraphVizConverter.h
 Read.o : $(INTPATH)Read.h $(INTPATH)Log.h $(INTPATH)Date.h
 Graph.o : $(INTPATH)Graph.h $(INTPATH)Read.h $(INTPATH)Log.h $(INTPATH)Date.h
 
-
-
-
-
-
 $(CLEAN) :
 	$(ECHO) "Nettoyage du repertoire..."
 	$(RM) $(RMFLAGS) $(EXE) $(OBJ) core
