@@ -39,6 +39,6 @@ Graph.o : $(INTPATH)Graph.h $(INTPATH)Read.h $(INTPATH)Log.h $(INTPATH)Date.h
 
 
 
-Clean :
+$(CLEAN) :
 	$(ECHO) "Nettoyage du repertoire..."
 	$(RM) $(RMFLAGS) $(EXE) $(OBJ) core
